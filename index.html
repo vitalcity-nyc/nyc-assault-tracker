@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="https://use.typekit.net/qqk2vto.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
 :root {
   --vc-black: #050507;
@@ -315,6 +317,110 @@ footer {
   background: var(--vc-chartreuse-20);
 }
 
+/* Map */
+#precinctMap { height: 560px; width: 100%; background: var(--vc-white); border: 1px solid var(--vc-cloud); }
+.leaflet-container { font-family: var(--font-primary); font-weight: 300; background: #ffffff; }
+.leaflet-tooltip.pct-tip {
+  font-family: var(--font-primary);
+  font-weight: 300;
+  font-size: 12px;
+  padding: 8px 10px;
+  background: var(--vc-black);
+  color: var(--vc-white);
+  border: 0;
+  border-radius: 2px;
+  box-shadow: none;
+  line-height: 1.45;
+}
+.leaflet-tooltip.pct-tip:before { display: none; }
+.leaflet-tooltip.pct-tip strong {
+  font-weight: 900;
+  font-size: 13px;
+  display: block;
+  margin-bottom: 3px;
+}
+.leaflet-tooltip.pct-tip .hood { color: #dddddd; font-size: 11px; margin-bottom: 6px; }
+.leaflet-tooltip.pct-tip .metric { color: var(--vc-chartreuse); font-weight: 700; }
+
+.map-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 14px;
+  align-items: center;
+}
+.map-controls .ctl-label {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--vc-charcoal);
+  margin-right: 6px;
+}
+.map-btn {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 12px;
+  padding: 8px 14px;
+  border: 1px solid var(--vc-black);
+  background: var(--vc-white);
+  color: var(--vc-black);
+  cursor: pointer;
+  letter-spacing: 0.02em;
+}
+.map-btn:hover { background: var(--vc-chartreuse-20); }
+.map-btn.active { background: var(--vc-black); color: var(--vc-white); }
+
+.map-legend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 12px 0 0;
+  font-family: var(--font-primary);
+  font-weight: 300;
+  font-size: 11px;
+  color: var(--vc-charcoal);
+  flex-wrap: wrap;
+}
+.legend-scale {
+  display: flex;
+  border: 1px solid var(--vc-cloud);
+}
+.legend-scale .swatch { width: 34px; height: 14px; }
+.legend-end {
+  font-variant-numeric: tabular-nums;
+  min-width: 40px;
+}
+
+.top-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 30px;
+  margin: 16px 0 0;
+}
+@media (max-width: 720px) { .top-list { grid-template-columns: 1fr; } }
+.top-list .row {
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  gap: 10px;
+  align-items: baseline;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--vc-cloud);
+  font-family: var(--font-primary);
+  font-size: 13px;
+}
+.top-list .row .rank {
+  font-weight: 900;
+  color: var(--vc-orange);
+}
+.top-list .row .hood { color: var(--vc-charcoal); font-size: 12px; }
+.top-list .row .val {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
 /* Data table */
 table.data {
   width: 100%;
@@ -340,6 +446,169 @@ table.data td {
 }
 table.data td.num { text-align: right; font-variant-numeric: tabular-nums; }
 table.data th.num { text-align: right; }
+
+/* 2026 case log */
+#caseLog {
+  font-family: var(--font-primary);
+  font-weight: 300;
+  font-size: 15px;
+  color: var(--vc-black);
+}
+#caseLog > summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 14px 18px;
+  background: var(--vc-black);
+  color: var(--vc-white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+#caseLog > summary::-webkit-details-marker { display: none; }
+#caseLog > summary::before {
+  content: '▸';
+  display: inline-block;
+  color: var(--vc-chartreuse);
+  font-size: 14px;
+  margin-right: 8px;
+  transition: transform 0.15s ease;
+}
+#caseLog[open] > summary::before { transform: rotate(90deg); }
+.case-summary-label {
+  flex: 1;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+}
+.case-summary-meta {
+  font-size: 12px;
+  color: var(--vc-chartreuse);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.case-log-intro {
+  padding: 18px 4px 4px;
+}
+.case-log-intro p {
+  font-size: 15px;
+  line-height: 1.55;
+  margin: 10px 0;
+}
+.case-log-intro .case-log-scope {
+  font-size: 13px;
+  color: var(--vc-charcoal);
+  padding-top: 8px;
+  border-top: 1px solid var(--vc-cloud);
+  margin-top: 14px;
+}
+.case-log-caution {
+  background: var(--vc-chartreuse-20, #f7f8dd);
+  border-left: 3px solid var(--vc-orange);
+  padding: 14px 16px;
+  margin-bottom: 4px;
+}
+.case-log-caution strong { font-weight: 700; }
+.case-log-caution p { margin: 8px 0 0; font-size: 14px; line-height: 1.5; }
+.case-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: flex-end;
+  padding: 14px 0;
+  margin-top: 10px;
+  border-top: 1px solid var(--vc-cloud);
+}
+.case-filter-bar label {
+  display: flex;
+  flex-direction: column;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--vc-charcoal);
+  font-weight: 700;
+  gap: 4px;
+}
+.case-filter-bar select,
+.case-filter-bar input[type="search"] {
+  font-family: var(--font-primary);
+  font-weight: 300;
+  font-size: 14px;
+  padding: 6px 10px;
+  border: 1px solid var(--vc-black);
+  background: var(--vc-white);
+  color: var(--vc-black);
+  min-width: 140px;
+}
+.case-filter-bar input[type="search"] { min-width: 220px; }
+.case-filter-count {
+  font-size: 12px;
+  color: var(--vc-charcoal);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-left: auto;
+}
+.case-list { margin-top: 8px; }
+.case-entry {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 14px;
+  padding: 14px 4px;
+  border-top: 1px solid var(--vc-cloud);
+}
+.case-entry:last-child { border-bottom: 1px solid var(--vc-cloud); }
+.case-entry .case-n {
+  font-weight: 900;
+  font-size: 18px;
+  color: var(--vc-black);
+  font-variant-numeric: tabular-nums;
+}
+.case-entry .case-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 14px;
+  margin-bottom: 4px;
+}
+.case-entry .case-name {
+  font-weight: 700;
+  font-size: 15px;
+}
+.case-entry .case-meta {
+  font-size: 12px;
+  color: var(--vc-charcoal);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.case-entry .case-borough {
+  font-weight: 700;
+  color: var(--vc-black);
+}
+.case-entry .case-desc {
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+.case-entry .case-source {
+  font-size: 12px;
+  color: var(--vc-black);
+  text-decoration: underline;
+  margin-left: 4px;
+}
+.case-entry .case-source:hover { color: var(--vc-orange); }
+.case-empty {
+  padding: 24px 4px;
+  color: var(--vc-charcoal);
+  font-style: italic;
+  text-align: center;
+}
+@media (max-width: 720px) {
+  .case-entry { grid-template-columns: 32px 1fr; gap: 10px; }
+  .case-filter-bar input[type="search"] { min-width: 140px; }
+}
 </style>
 </head>
 <body>
@@ -434,6 +703,34 @@ table.data th.num { text-align: right; }
     </div>
   </div>
 
+  <!-- Precinct map -->
+  <div class="section-h">
+    <h2>Where in the city</h2>
+    <span class="tag">By NYPD precinct · 2025</span>
+  </div>
+
+  <div class="chart-card">
+    <h3 id="mapTitle">Rate per 100,000 residents, by precinct</h3>
+    <p class="chart-dek" id="mapDek">2025 assault complaints divided by 2020 Census precinct population. Toggle to see raw volume, year-over-year percent change, or year-over-year volume change.</p>
+
+    <div class="map-controls">
+      <span class="ctl-label">Show</span>
+      <button class="map-btn active" data-metric="rate">Rate per 100k</button>
+      <button class="map-btn" data-metric="pct">% change vs. 2024</button>
+      <button class="map-btn" data-metric="vol">Change vs. 2024 (count)</button>
+      <button class="map-btn" data-metric="raw">2025 count</button>
+    </div>
+
+    <div id="precinctMap"></div>
+
+    <div class="map-legend" id="mapLegend"></div>
+
+    <h3 style="margin-top: 28px; font-size: 16px;" id="topListTitle">Top 10 precincts by rate per 100k</h3>
+    <div class="top-list" id="topList"></div>
+
+    <p class="source-line" style="margin-top: 18px;">Sources: <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Current-Year-To-Date-/5uac-w243" target="_blank" rel="noopener">NYPD Complaint Data — Current (YTD)</a> for 2025 counts; <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i" target="_blank" rel="noopener">NYPD Complaint Data — Historic</a> for 2024 counts; <a href="https://data.cityofnewyork.us/Public-Safety/Police-Precincts/y76i-bdw7" target="_blank" rel="noopener">NYC Open Data Police Precincts</a> GeoJSON for boundaries; 2020 Census Block-to-Precinct population crosswalk compiled by <a href="https://github.com/jkeefe/census-by-precincts" target="_blank" rel="noopener">John Keefe (MIT-licensed)</a>. Precinct 22 (Central Park) is excluded from rate calculations because it has a resident population of 129 — the rate would be misleadingly high. Population-based rates use the most recent decennial count (2020) and are not adjusted for precinct-level population change since then.</p>
+  </div>
+
   <!-- Annual totals table -->
   <div class="section-h">
     <h2>Annual totals, at a glance</h2>
@@ -442,6 +739,64 @@ table.data th.num { text-align: right; }
   <div class="chart-card">
     <div id="annualTable"></div>
     <p class="source-line">Source: NYPD historical tables (pre-2006 felony) and NYPD Complaint Data Historic + YTD (2006–). Misdemeanor figures in this table start in 2006, the first year complaint-level open data is available.</p>
+  </div>
+
+  <!-- 2026 case log -->
+  <div class="section-h">
+    <h2>2026 case log</h2>
+    <span class="tag">Named cases, running total</span>
+  </div>
+  <div class="chart-card">
+    <details id="caseLog">
+      <summary>
+        <span class="case-summary-label">View 2026 felony assault case log</span>
+        <span class="case-summary-meta" id="caseLogMeta">Loading…</span>
+      </summary>
+      <div class="case-log-intro">
+        <div class="case-log-caution">
+          <strong>This list is a small and skewed fraction of all felony assaults.</strong>
+          <p>In 2025, we catalogued 237 named cases using the same sourcing approach used here. The NYPD recorded <strong>29,474 felony assault complaints</strong> the same year. That means this kind of log captures <strong>less than 1 percent — roughly 1 in every 125 cases</strong>.</p>
+          <p>The cases that surface in a DA press release or a news report are, by definition, the ones prosecutors and editors most want to call attention to: typically the most severe, the most unusual, or those involving vulnerable victims, weapons, public transit, hate-crime elements, or high-profile defendants. Everyday felony assaults between people who know each other — which the data suggest make up the majority — rarely appear. Read this list as a catalog of what made the news, not a representative sample of what happened.</p>
+        </div>
+        <p>Each numbered entry below is a separate felony-assault defendant identified from a District Attorney press release or named news report in 2026. The list will not equal any aggregate count on this page — it is a human-readable companion, not a parallel dataset.</p>
+        <p class="case-log-scope"><strong>What's included:</strong> stabbings, shootings, severe beatings, subway pushings, hate-crime felony assaults, and attempted-murder cases with felony-assault counts, occurring in or prosecuted in one of the five boroughs. <strong>What's not:</strong> misdemeanor assaults, cases without a named defendant, and any matter we could not source to a DA release or named newsroom.</p>
+        <div class="case-filter-bar">
+          <label>Borough
+            <select id="caseFilterBorough">
+              <option value="">All</option>
+              <option>Manhattan</option>
+              <option>Brooklyn</option>
+              <option>Queens</option>
+              <option>Bronx</option>
+              <option>Staten Island</option>
+            </select>
+          </label>
+          <label>Month
+            <select id="caseFilterMonth">
+              <option value="">All</option>
+              <option value="01">January</option>
+              <option value="02">February</option>
+              <option value="03">March</option>
+              <option value="04">April</option>
+              <option value="05">May</option>
+              <option value="06">June</option>
+              <option value="07">July</option>
+              <option value="08">August</option>
+              <option value="09">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </select>
+          </label>
+          <label>Search
+            <input type="search" id="caseFilterText" placeholder="Name, street, keyword…" />
+          </label>
+          <span class="case-filter-count" id="caseFilterCount"></span>
+        </div>
+      </div>
+      <div id="caseList" class="case-list"></div>
+      <p class="source-line" id="caseLogSource">Source: New York County, Kings County, Bronx County, Queens County, and Richmond County District Attorney press releases; NY Post, Daily News, NY Times, Gothamist, ABC7, NBC4, CBS2, Patch, and amNY reporting. Entries are deconflicted where a single defendant appears across multiple reports; a defendant may appear more than once when separate events (arrest, indictment, conviction, sentencing) are reported. Data last refreshed <span id="caseLogDate">—</span>.</p>
+    </details>
   </div>
 
   <!-- Methodology -->
@@ -455,6 +810,8 @@ table.data th.num { text-align: right; }
       <li><strong>NYPD Complaint Data — Current (Year To Date)</strong> (NYC Open Data, dataset <code>5uac-w243</code>). Covers all complete quarters of the current reporting year. <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Current-Year-To-Date-/5uac-w243" target="_blank" rel="noopener">Dataset page</a>.</li>
       <li><strong>NYPD Seven Major Felony Offenses (1993–2024)</strong> — published historical table used for pre-2006 felony assault annual totals. <a href="https://www.nyc.gov/assets/nypd/downloads/pdf/analysis_and_planning/historical-crime-data/seven-major-felony-offenses-by-precinct-1993-2024.pdf" target="_blank" rel="noopener">Historical table PDF</a>.</li>
       <li><strong>NYPD CompStat weekly reports</strong> — not used for the live numbers here (they are PDF-only and are not machine-readable) but are the authoritative source for week-level NYPD crime reporting. Any discrepancy between CompStat and this dashboard reflects classification or reconciliation adjustments made by NYPD after initial reporting.</li>
+      <li><strong>NYC Police Precincts (GeoJSON boundary file)</strong> (NYC Open Data, dataset <code>y76i-bdw7</code>). Used to draw the precinct choropleth map. <a href="https://data.cityofnewyork.us/Public-Safety/Police-Precincts/78dh-3ptz" target="_blank" rel="noopener">Dataset page</a>.</li>
+      <li><strong>2020 Decennial Census population allocated to NYPD precincts</strong> — prepared by data journalist John Keefe using 2020 Census block-level population and NYPD precinct boundaries. Used for rate-per-100,000 calculations on the precinct map. <a href="https://johnkeefe.net/nyc-police-precinct-and-census-data" target="_blank" rel="noopener">Source and methodology</a>; <a href="https://github.com/jkeefe/census-by-precincts" target="_blank" rel="noopener">data repository</a>.</li>
     </ul>
 
     <h3>What counts as an assault</h3>
@@ -471,8 +828,19 @@ table.data th.num { text-align: right; }
       <li>Monthly counts, 2025 forward, from <code>5uac-w243</code>, using the same grouping.</li>
       <li>Borough breakdown, latest full year, from <code>5uac-w243</code>, grouped by <code>boro_nm</code> and <code>law_cat_cd</code>.</li>
       <li>Annual counts, 2006 onward, from <code>qgea-i56i</code> (plus 2025 from <code>5uac-w243</code>), grouped by <code>date_extract_y(cmplnt_fr_dt)</code>.</li>
+      <li>Precinct map: 2025 and 2024 complaint counts, grouped by <code>addr_pct_cd</code>, covering both felony and misdemeanor assault. 2025 from <code>5uac-w243</code>; 2024 from <code>qgea-i56i</code>.</li>
     </ul>
     <p>Percent change is computed as <code>(later − earlier) ÷ earlier × 100</code>, rounded to one decimal place. All counts are based on the <em>date of occurrence</em> (<code>cmplnt_fr_dt</code>), not the date of report.</p>
+
+    <h3>Precinct map</h3>
+    <p>The map shows four metrics at the precinct level, toggleable with the buttons above the map:</p>
+    <ul>
+      <li><strong>Rate per 100,000 (2025)</strong> — 2025 year-to-date assault complaints divided by 2020 Census precinct population, multiplied by 100,000. Rate is the fairest way to compare precincts of very different population sizes.</li>
+      <li><strong>Percent change, 2025 vs 2024</strong> — <code>(count₂₀₂₅ − count₂₀₂₄) ÷ count₂₀₂₄ × 100</code>. Useful for spotting precincts where assault is trending up or down, regardless of baseline size.</li>
+      <li><strong>Volume change, 2025 vs 2024</strong> — the absolute difference in complaint counts. Surfaces where the largest real-world shifts are happening.</li>
+      <li><strong>Raw count (2025)</strong> — total 2025 assault complaints. Useful for understanding where the sheer volume of assault is concentrated, though it is strongly correlated with population.</li>
+    </ul>
+    <p>Precinct 22 (Central Park, residential population of 129) is excluded from rate calculations because the ratio of daytime-visitor activity to resident population makes a per-resident rate meaningless there. Population data are from the 2020 Decennial Census, the most recent available. We intentionally do not compare precinct rates across years, because reliable precinct-level population estimates between decennial censuses are not available and changes in residential population between 2020 and 2025 could meaningfully distort a multi-year rate comparison.</p>
 
     <h3>Baseline years</h3>
     <p>The baselines in the headline comparison chart were chosen to mark reference points the public tends to remember:</p>
@@ -490,8 +858,8 @@ table.data th.num { text-align: right; }
       <li><strong>Classification drift.</strong> What the NYPD files as "felony" vs. "misdemeanor" assault depends on officer judgment at the complaint stage. Classification practices can shift over time and across precincts.</li>
       <li><strong>Data revision lag.</strong> The Current (YTD) dataset is updated on a roughly quarterly cadence. The most recent three to six months of data will typically move upward slightly as late reports are filed and processed.</li>
       <li><strong>Methodology break at 2006.</strong> Pre-2006 totals come from NYPD's published annual tables; 2006 onward comes from complaint-level open data. The two match within a few percent but are not identical.</li>
-      <li><strong>Not per-capita.</strong> Counts on this page are absolute — they do not adjust for changes in the city's population. NYC's population grew from about 7.3 million in 1993 to about 8.3 million in 2024 (roughly 14 percent), so per-capita declines are somewhat steeper than raw count declines.</li>
-      <li><strong>Boroughs only.</strong> Precinct- and neighborhood-level breakdowns are available in the same datasets; they are out of scope for this top-line dashboard.</li>
+      <li><strong>Trendline counts are citywide absolute numbers.</strong> They do not adjust for changes in the city's population. NYC's population grew from about 7.3 million in 1993 to about 8.3 million in 2024 (roughly 14 percent), so per-capita declines are somewhat steeper than raw count declines.</li>
+      <li><strong>Precinct rates use 2020 population only.</strong> The precinct map does not attempt to compare rates across years. Reliable precinct-level population between decennial censuses does not exist, and allocating estimates down to precinct boundaries would introduce error we cannot quantify honestly.</li>
     </ul>
 
     <h3>Reproducing these numbers</h3>
@@ -546,6 +914,40 @@ const HISTORIC_FELONY = {
   2005: 19389
 };
 const HISTORIC_FELONY_SOURCE = 'NYPD Historical Seven Major Felony Offenses by Precinct, 1993–2024';
+
+// 2020 Census population by NYPD precinct, compiled via block-to-precinct crosswalk
+// by John Keefe: https://github.com/jkeefe/census-by-precincts (MIT license)
+const PRECINCT_POP_2020 = {"1":84799,"5":50598,"6":64643,"7":57985,"9":75951,"10":65570,"13":100050,"14":28050,"17":89367,"18":67528,"19":220261,"20":114575,"22":129,"23":74769,"24":107489,"25":50996,"26":50002,"28":49200,"30":60456,"32":81240,"33":71598,"34":108608,"40":100929,"41":54454,"42":93755,"43":188015,"44":150436,"45":130799,"46":132584,"47":163539,"48":89216,"49":119881,"50":106976,"52":146888,"60":109024,"61":169513,"62":198870,"63":112652,"66":205377,"67":162446,"68":136071,"69":90763,"70":164568,"71":102000,"72":133230,"73":98506,"75":200994,"76":47789,"77":101267,"78":73203,"79":106039,"81":68921,"83":120747,"84":65597,"88":64372,"90":131377,"94":72748,"100":50809,"101":73376,"102":153297,"103":121059,"104":178948,"105":199218,"106":129391,"107":161402,"108":137962,"109":269581,"110":181051,"111":122211,"112":119739,"113":135221,"114":208525,"115":179134,"120":122308,"121":128149,"122":144552,"123":100738};
+
+// Plain-English neighborhood summaries per precinct
+const PRECINCT_HOOD = {
+  "1":"Lower Manhattan / Tribeca","5":"Chinatown / Little Italy","6":"Greenwich Village / West Village","7":"Lower East Side",
+  "9":"East Village","10":"Chelsea","13":"Gramercy / Flatiron","14":"Midtown South / Penn Station",
+  "17":"Midtown East / Turtle Bay","18":"Midtown North / Theater District","19":"Upper East Side","20":"Upper West Side",
+  "22":"Central Park","23":"East Harlem","24":"Upper West Side (W 86–110)","25":"East Harlem (north)",
+  "26":"Morningside Heights","28":"Central Harlem","30":"Hamilton Heights","32":"Central Harlem (north)",
+  "33":"Washington Heights (south)","34":"Washington Heights / Inwood",
+  "40":"Mott Haven / Melrose (Bronx)","41":"Hunts Point (Bronx)","42":"Morrisania (Bronx)","43":"Parkchester / Soundview (Bronx)",
+  "44":"Concourse / Highbridge (Bronx)","45":"Throgs Neck / Co-op City (Bronx)","46":"University Heights / Fordham (Bronx)",
+  "47":"Wakefield / Williamsbridge (Bronx)","48":"Belmont / East Tremont (Bronx)","49":"Pelham Parkway / Morris Park (Bronx)",
+  "50":"Kingsbridge / Riverdale (Bronx)","52":"Bedford Park / Norwood (Bronx)",
+  "60":"Coney Island / Brighton Beach (Brooklyn)","61":"Sheepshead Bay (Brooklyn)","62":"Bensonhurst (Brooklyn)",
+  "63":"Mill Basin / Flatlands (Brooklyn)","66":"Borough Park (Brooklyn)","67":"East Flatbush (Brooklyn)",
+  "68":"Bay Ridge / Dyker Heights (Brooklyn)","69":"Canarsie (Brooklyn)","70":"Midwood / Kensington (Brooklyn)",
+  "71":"Crown Heights South / Prospect-Lefferts (Brooklyn)","72":"Sunset Park (Brooklyn)","73":"Brownsville (Brooklyn)",
+  "75":"East New York / Cypress Hills (Brooklyn)","76":"Carroll Gardens / Red Hook (Brooklyn)","77":"Crown Heights North (Brooklyn)",
+  "78":"Park Slope / Prospect Heights (Brooklyn)","79":"Bedford-Stuyvesant (Brooklyn)","81":"Bed-Stuy (north) (Brooklyn)",
+  "83":"Bushwick (Brooklyn)","84":"Brooklyn Heights / Downtown Brooklyn","88":"Fort Greene / Clinton Hill (Brooklyn)",
+  "90":"Williamsburg South (Brooklyn)","94":"Greenpoint / Williamsburg North (Brooklyn)",
+  "100":"Rockaway (Queens)","101":"Far Rockaway (Queens)","102":"Richmond Hill / Kew Gardens (Queens)",
+  "103":"Jamaica (Queens)","104":"Ridgewood / Glendale / Middle Village (Queens)","105":"Queens Village / Cambria Heights (Queens)",
+  "106":"Ozone Park / Howard Beach (Queens)","107":"Fresh Meadows / Flushing South (Queens)","108":"Long Island City / Sunnyside (Queens)",
+  "109":"Flushing / Whitestone (Queens)","110":"Elmhurst / Corona (Queens)","111":"Bayside / Douglaston (Queens)",
+  "112":"Forest Hills / Rego Park (Queens)","113":"Jamaica South / St. Albans (Queens)","114":"Astoria (Queens)",
+  "115":"Jackson Heights / East Elmhurst (Queens)",
+  "120":"St. George / Stapleton (Staten Island)","121":"Port Richmond / Mariners Harbor (Staten Island)",
+  "122":"New Dorp / Great Kills (Staten Island)","123":"Tottenville / Prince's Bay (Staten Island)"
+};
 
 const BORO_COLORS = {
   'BRONX': COLORS.magenta,
@@ -614,6 +1016,20 @@ async function loadAnnual() {
        AND date_extract_y(cmplnt_fr_dt) >= 2025
      GROUP BY y, law_cat_cd ORDER BY y`);
   return [...hist, ...ytd];
+}
+
+async function loadPrecinct(endpoint, year) {
+  return soql(endpoint,
+    `SELECT addr_pct_cd, count(*) AS n
+     WHERE (ofns_desc='FELONY ASSAULT' OR ofns_desc='ASSAULT 3 & RELATED OFFENSES')
+       AND date_extract_y(cmplnt_fr_dt)=${year} AND addr_pct_cd IS NOT NULL
+     GROUP BY addr_pct_cd`);
+}
+
+async function loadPrecinctGeo() {
+  const r = await fetch('https://data.cityofnewyork.us/api/geospatial/y76i-bdw7?method=export&format=GeoJSON');
+  if (!r.ok) throw new Error('Precinct GeoJSON fetch failed');
+  return r.json();
 }
 
 async function loadBorough(year) {
@@ -1010,6 +1426,217 @@ function renderYoYMonth(monthlySeries, latestYear) {
   });
 }
 
+// ---- Precinct map ----
+const MAP_STATE = { metric: 'rate', geo: null, layer: null, map: null, counts: {} };
+
+// 5-step gradient for VC data viz
+// Primary (worse): chartreuse -> safety orange -> red
+const SEQ_BAD = ['#dde44c', '#bdd451', '#ff7c53', '#fb693c', '#e03a30'];
+// Diverging for YoY change: green (improvement) <- neutral -> red (worse)
+const DIV = ['#57aa4a', '#9cc456', '#dde44c', '#ff7c53', '#e03a30'];
+
+function quantiles(values, n) {
+  const vs = values.filter(v => v != null && !isNaN(v)).slice().sort((a, b) => a - b);
+  if (!vs.length) return [];
+  const breaks = [];
+  for (let i = 1; i < n; i++) {
+    const idx = Math.floor((i / n) * vs.length);
+    breaks.push(vs[idx]);
+  }
+  return breaks;
+}
+
+function symmetricBreaks(values) {
+  const vs = values.filter(v => v != null && !isNaN(v));
+  if (!vs.length) return [-10, -2, 2, 10];
+  // Use 90th-percentile of absolute values as the "cap" so a couple of
+  // high-variance small precincts don't drown out the real distribution.
+  const abs = vs.map(Math.abs).sort((a, b) => a - b);
+  const cap = abs[Math.floor(abs.length * 0.9)] || Math.max(...abs);
+  // Round to a friendly-looking break
+  const roundTo = cap > 100 ? 50 : cap > 20 ? 5 : cap > 5 ? 2 : 1;
+  const capR = Math.max(roundTo, Math.round(cap / roundTo) * roundTo);
+  return [-capR, -capR / 3, capR / 3, capR];
+}
+
+function precinctMetric(precinct, metric) {
+  const p = String(precinct);
+  const c25 = MAP_STATE.counts['2025'][p] || 0;
+  const c24 = MAP_STATE.counts['2024'][p] || 0;
+  const pop = PRECINCT_POP_2020[p];
+  if (metric === 'raw') return c25;
+  if (metric === 'vol') return c25 - c24;
+  if (metric === 'pct') return c24 ? ((c25 - c24) / c24) * 100 : null;
+  if (metric === 'rate') {
+    if (!pop || pop < 1000) return null; // exclude tiny-pop precincts like Central Park
+    return (c25 / pop) * 100000;
+  }
+  return null;
+}
+
+function colorFor(value, metric, breaks) {
+  if (value == null || isNaN(value)) return '#eeeeee';
+  if (metric === 'pct' || metric === 'vol') {
+    // diverging
+    if (value <= breaks[0]) return DIV[0];
+    if (value <= breaks[1]) return DIV[1];
+    if (value <= breaks[2]) return DIV[2];
+    if (value <= breaks[3]) return DIV[3];
+    return DIV[4];
+  }
+  // sequential (rate, raw)
+  if (value <= breaks[0]) return SEQ_BAD[0];
+  if (value <= breaks[1]) return SEQ_BAD[1];
+  if (value <= breaks[2]) return SEQ_BAD[2];
+  if (value <= breaks[3]) return SEQ_BAD[3];
+  return SEQ_BAD[4];
+}
+
+function formatMetric(value, metric) {
+  if (value == null || isNaN(value)) return '—';
+  if (metric === 'pct') return (value > 0 ? '+' : '') + value.toFixed(1) + '%';
+  if (metric === 'vol') return (value > 0 ? '+' : '') + value.toLocaleString() + ' vs. 2024';
+  if (metric === 'rate') return Math.round(value).toLocaleString() + ' per 100k';
+  return value.toLocaleString();
+}
+
+function metricMeta(metric) {
+  if (metric === 'rate') return { title: 'Rate per 100,000 residents, by precinct',
+    dek: '2025 assault complaints (felony + misdemeanor) divided by 2020 Census precinct population. Precinct 22 (Central Park) excluded — its tiny resident population would distort the rate.',
+    topTitle: 'Top 10 precincts by rate per 100k', palette: SEQ_BAD, low: 'Lower rate', high: 'Higher rate' };
+  if (metric === 'pct') return { title: 'Year-over-year percent change, by precinct',
+    dek: '2025 vs. 2024 assault complaint counts. Orange/red = increasing; green/chartreuse = decreasing.',
+    topTitle: 'Top 10 precincts by % increase vs. 2024', palette: DIV, low: 'Decreasing', high: 'Increasing' };
+  if (metric === 'vol') return { title: 'Year-over-year change in count, by precinct',
+    dek: 'Absolute change in assault complaints from 2024 to 2025. Orange/red = more complaints; green/chartreuse = fewer.',
+    topTitle: 'Top 10 precincts by volume increase vs. 2024', palette: DIV, low: 'Fewer', high: 'More' };
+  return { title: 'Raw 2025 complaint count, by precinct',
+    dek: 'Total felony + misdemeanor assault complaints filed with the NYPD in 2025, by precinct. Counts are raw volume — not adjusted for population.',
+    topTitle: 'Top 10 precincts by 2025 count', palette: SEQ_BAD, low: 'Lower', high: 'Higher' };
+}
+
+function renderLegend(metric, breaks) {
+  const meta = metricMeta(metric);
+  const fmt = v => {
+    if (metric === 'pct') return (v > 0 ? '+' : '') + v.toFixed(0) + '%';
+    if (metric === 'vol') return (v > 0 ? '+' : '') + Math.round(v).toLocaleString();
+    if (metric === 'rate') return Math.round(v).toLocaleString();
+    return Math.round(v).toLocaleString();
+  };
+  const swatches = meta.palette.map(c => `<div class="swatch" style="background:${c}"></div>`).join('');
+  document.getElementById('mapLegend').innerHTML =
+    `<span>${meta.low}</span>
+     <div class="legend-scale">${swatches}</div>
+     <span>${meta.high}</span>
+     <span style="margin-left: 16px;">Breakpoints: ${breaks.map(fmt).join(' · ')}</span>`;
+}
+
+function renderTopList(metric) {
+  const meta = metricMeta(metric);
+  document.getElementById('topListTitle').textContent = meta.topTitle;
+  const precincts = Object.keys(PRECINCT_POP_2020);
+  const rows = precincts.map(p => ({
+    p,
+    v: precinctMetric(p, metric),
+    raw: MAP_STATE.counts['2025'][p] || 0,
+    prev: MAP_STATE.counts['2024'][p] || 0
+  })).filter(r => r.v != null);
+  rows.sort((a, b) => b.v - a.v);
+  const top = rows.slice(0, 10);
+  const html = top.map((r, i) => {
+    const hood = PRECINCT_HOOD[r.p] || '—';
+    return `<div class="row">
+      <div class="rank">${i+1}</div>
+      <div><strong>${r.p} Pct.</strong><div class="hood">${hood}</div></div>
+      <div class="val">${formatMetric(r.v, metric)}</div>
+    </div>`;
+  }).join('');
+  document.getElementById('topList').innerHTML = html;
+}
+
+function drawChoropleth(metric) {
+  const meta = metricMeta(metric);
+  document.getElementById('mapTitle').textContent = meta.title;
+  document.getElementById('mapDek').textContent = meta.dek;
+
+  // Compute values for all precincts in the GeoJSON
+  const values = MAP_STATE.geo.features.map(f => precinctMetric(f.properties.precinct, metric));
+  // Determine breaks
+  const breaks = (metric === 'pct' || metric === 'vol')
+    ? symmetricBreaks(values)
+    : quantiles(values, 5);
+
+  // Remove old layer
+  if (MAP_STATE.layer) MAP_STATE.map.removeLayer(MAP_STATE.layer);
+
+  MAP_STATE.layer = L.geoJSON(MAP_STATE.geo, {
+    style: (feature) => {
+      const v = precinctMetric(feature.properties.precinct, metric);
+      return {
+        fillColor: colorFor(v, metric, breaks),
+        weight: 0.7,
+        color: '#ffffff',
+        fillOpacity: 0.88
+      };
+    },
+    onEachFeature: (feature, layer) => {
+      const p = feature.properties.precinct;
+      const c25 = MAP_STATE.counts['2025'][p] || 0;
+      const c24 = MAP_STATE.counts['2024'][p] || 0;
+      const pop = PRECINCT_POP_2020[p] || 'unknown';
+      const hood = PRECINCT_HOOD[p] || '';
+      const v = precinctMetric(p, metric);
+
+      const tipHTML =
+        `<strong>${p} Pct.</strong>` +
+        `<div class="hood">${hood}</div>` +
+        `<div class="metric">${formatMetric(v, metric)}</div>` +
+        `<div style="margin-top:6px;font-size:11px;color:#aaa;">2025: ${c25.toLocaleString()} · 2024: ${c24.toLocaleString()} · Pop. (2020): ${pop.toLocaleString()}</div>`;
+      layer.bindTooltip(tipHTML, { className: 'pct-tip', sticky: true });
+      layer.on('mouseover', () => layer.setStyle({ weight: 2, color: '#050507' }));
+      layer.on('mouseout', () => MAP_STATE.layer.resetStyle(layer));
+    }
+  }).addTo(MAP_STATE.map);
+
+  renderLegend(metric, breaks);
+  renderTopList(metric);
+  // Highlight active button
+  document.querySelectorAll('.map-btn').forEach(b => b.classList.toggle('active', b.dataset.metric === metric));
+}
+
+async function initMap() {
+  const [geo, p25, p24] = await Promise.all([
+    loadPrecinctGeo(),
+    loadPrecinct(ENDPOINTS.ytd, 2025),
+    loadPrecinct(ENDPOINTS.historic, 2024)
+  ]);
+  MAP_STATE.geo = geo;
+  MAP_STATE.counts['2025'] = Object.fromEntries(p25.map(r => [String(Number(r.addr_pct_cd)), Number(r.n)]));
+  MAP_STATE.counts['2024'] = Object.fromEntries(p24.map(r => [String(Number(r.addr_pct_cd)), Number(r.n)]));
+
+  MAP_STATE.map = L.map('precinctMap', {
+    scrollWheelZoom: false,
+    zoomSnap: 0.25,
+    attributionControl: false,
+    zoomControl: true
+  });
+  // No basemap tiles — just polygons on white, cleaner look
+  MAP_STATE.map.attributionControl = L.control.attribution({ prefix: false }).addAttribution('Boundaries: NYC Open Data').addTo(MAP_STATE.map);
+
+  // Fit to data bounds
+  const tempLayer = L.geoJSON(geo);
+  MAP_STATE.map.fitBounds(tempLayer.getBounds(), { padding: [8, 8] });
+
+  drawChoropleth('rate');
+
+  document.querySelectorAll('.map-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      MAP_STATE.metric = btn.dataset.metric;
+      drawChoropleth(MAP_STATE.metric);
+    });
+  });
+}
+
 function renderAnnualTable(annual) {
   const years = Array.from(new Set([
     ...Object.keys(HISTORIC_FELONY).map(Number),
@@ -1050,6 +1677,97 @@ function updateStamps(meta) {
     new Date().toLocaleString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' });
 }
 
+// --- 2026 case log ---
+const CASE_LOG_STATE = { data: null };
+
+function caseLogFormatDate(iso) {
+  const [y, m, d] = iso.split('-').map(Number);
+  const dt = new Date(y, m - 1, d);
+  return dt.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+}
+
+function renderCaseList() {
+  if (!CASE_LOG_STATE.data) return;
+  const data = CASE_LOG_STATE.data;
+  const cases = data.cases || [];
+  const boroSel = document.getElementById('caseFilterBorough').value;
+  const monthSel = document.getElementById('caseFilterMonth').value;
+  const textSel = (document.getElementById('caseFilterText').value || '').trim().toLowerCase();
+
+  const listEl = document.getElementById('caseList');
+  const countEl = document.getElementById('caseFilterCount');
+
+  if (!cases.length) {
+    listEl.innerHTML = '<p class="case-empty">No 2026 cases have been logged yet. This list is updated manually and will grow as DA press releases and news reports come in. Check back soon.</p>';
+    countEl.textContent = '';
+    return;
+  }
+
+  const filtered = cases.filter(c => {
+    if (boroSel && c.borough !== boroSel) return false;
+    if (monthSel && !c.date.startsWith('2026-' + monthSel)) return false;
+    if (textSel) {
+      const haystack = (c.name + ' ' + c.summary + ' ' + c.borough).toLowerCase();
+      if (!haystack.includes(textSel)) return false;
+    }
+    return true;
+  });
+
+  if (!filtered.length) {
+    listEl.innerHTML = '<p class="case-empty">No cases match these filters.</p>';
+    countEl.textContent = '0 of ' + cases.length + ' shown';
+    return;
+  }
+
+  const html = filtered.map(c => {
+    const src = c.source_url ? `<a class="case-source" href="${c.source_url}" target="_blank" rel="noopener">Source</a>` : '';
+    const nameEsc = (c.name || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const sumEsc = (c.summary || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return `<div class="case-entry">
+      <div class="case-n">${c.n}.</div>
+      <div>
+        <div class="case-head">
+          <span class="case-name">${nameEsc}</span>
+          <span class="case-meta">${caseLogFormatDate(c.date)} · <span class="case-borough">${c.borough}</span></span>
+        </div>
+        <p class="case-desc">${sumEsc} ${src}</p>
+      </div>
+    </div>`;
+  }).join('');
+
+  listEl.innerHTML = html;
+  countEl.textContent = filtered.length === cases.length
+    ? `${cases.length} cases`
+    : `${filtered.length} of ${cases.length} shown`;
+}
+
+async function loadCaseLog() {
+  const metaEl = document.getElementById('caseLogMeta');
+  try {
+    const r = await fetch('cases-2026.json?cache=' + Date.now());
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const data = await r.json();
+    CASE_LOG_STATE.data = data;
+
+    const cases = data.cases || [];
+    metaEl.textContent = cases.length === 0
+      ? 'No 2026 cases logged yet'
+      : `${cases.length} cases · updated ${data.last_updated || '—'}`;
+    document.getElementById('caseLogDate').textContent = data.last_updated || '—';
+
+    ['caseFilterBorough', 'caseFilterMonth', 'caseFilterText'].forEach(id => {
+      document.getElementById(id).addEventListener('input', renderCaseList);
+      document.getElementById(id).addEventListener('change', renderCaseList);
+    });
+
+    renderCaseList();
+  } catch (e) {
+    console.error('Case log failed to load', e);
+    metaEl.textContent = 'Case log unavailable';
+    document.getElementById('caseList').innerHTML = '<p class="case-empty">The 2026 case log could not be loaded. This is a static JSON file served alongside the page; it may be missing if the page was opened from a file:// URL rather than through a web server.</p>';
+  }
+}
+
 // --- Main ---
 async function main() {
   try {
@@ -1071,6 +1789,9 @@ async function main() {
 
     const boroRaw = await loadBorough(latestYear);
     renderBorough(boroRaw, latestYear);
+
+    await initMap();
+    await loadCaseLog();
   } catch (e) {
     console.error(e);
     showError(e.message);
