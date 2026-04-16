@@ -802,17 +802,17 @@ table.data th.num { text-align: right; }
     <span class="tag">NYC Transit police jurisdiction</span>
   </div>
   <div class="chart-card">
-    <h3>Subway crime is a small share of the citywide total</h3>
-    <p class="chart-dek">Subway crime gets disproportionate news coverage relative to its share of citywide crime. The KPIs below track all seven major felonies (murder, rape, robbery, felony assault, burglary, grand larceny, and grand larceny auto) in the NYC Transit police jurisdiction &mdash; the subway system, excluding LIRR/Metro-North/PATH/NYC Ferry. The chart below zooms in on felony assault specifically.</p>
+    <h3>Subway felony assault is a small share of the citywide total</h3>
+    <p class="chart-dek">Subway crime gets disproportionate news coverage relative to its share of citywide crime. This section zooms in on felony assault specifically &mdash; complaints filed inside the NYC Transit police jurisdiction (the subway system, excluding LIRR, Metro-North, PATH, and NYC Ferry). Because NYC Open Data's complaint-level feed is what lets us filter on offense <em>and</em> location simultaneously, these figures are for the most recent complete calendar year, not year-to-date.</p>
 
     <div class="kpi-grid" style="margin:12px 0 20px;">
       <div class="kpi">
-        <div class="label" id="subwayKpi1Label">Major felony crimes in NYC Transit &mdash; YTD</div>
+        <div class="label" id="subwayKpi1Label">Subway felony assaults</div>
         <div class="value" id="subwayKpi1Value">&mdash;</div>
         <div class="sub" id="subwayKpi1Sub">&mdash;</div>
       </div>
       <div class="kpi">
-        <div class="label" id="subwayKpi2Label">Share of citywide major felony crime</div>
+        <div class="label" id="subwayKpi2Label">Share of citywide felony assaults</div>
         <div class="value" id="subwayKpi2Value">&mdash;</div>
         <div class="sub" id="subwayKpi2Sub">&mdash;</div>
       </div>
@@ -824,9 +824,9 @@ table.data th.num { text-align: right; }
     </div>
 
     <h3 style="margin-top: 28px; font-size: 16px;">Subway felony assault, monthly</h3>
-    <p class="chart-dek" style="margin-top: 4px;">Monthly felony assault complaints in the subway system only (narrower than "major felony crime" in the KPIs above).</p>
+    <p class="chart-dek" style="margin-top: 4px;">Monthly felony assault complaints in the subway system only.</p>
     <div class="chart-holder h-md"><canvas id="subwayChart"></canvas></div>
-    <p class="source-line"><strong>KPIs (top row):</strong> <a href="https://www.nyc.gov/site/nypd/stats/crime-statistics/compstat.page" target="_blank" rel="noopener">NYPD CompStat &mdash; Transit</a>, which covers all seven major felonies in the NYC Transit police jurisdiction (the subway system, excluding LIRR, Metro-North, PATH, and NYC Ferry). <strong>Monthly chart:</strong> <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i" target="_blank" rel="noopener">NYPD Complaint Data &mdash; Historic</a> and <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Current-Year-To-Date-/5uac-w243" target="_blank" rel="noopener">Current (YTD)</a>, filtered to felony assault complaints where <code>transit_district IS NOT NULL</code>. The two sources use slightly different boundaries (CompStat Transit includes all major felonies; Open Data's <code>transit_district</code> flag is specifically felony assault here), so the per-year totals will differ by design.</p>
+    <p class="source-line"><a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i" target="_blank" rel="noopener">NYPD Complaint Data &mdash; Historic</a> and <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Current-Year-To-Date-/5uac-w243" target="_blank" rel="noopener">Current (YTD)</a>, filtered to felony assault complaints where <code>transit_district IS NOT NULL</code>. Current-year (2026) figures aren't yet available for this subset because the complaint-level feed lags for location-tagged incidents &mdash; hence the "most recent complete year" framing above.</p>
   </div>
 
   <!-- Annual totals table -->
@@ -2260,8 +2260,13 @@ function renderAnnualTable(annual) {
 }
 
 async function renderSubway() {
-  // Historical monthly trendline still comes from NYC Open Data complaint-level feed.
-  // Current-year KPIs (2026 YTD vs. same-period 2025) come from NYPD CompStat Transit.
+  // This whole section is felony-assault-only, subway-only.
+  // CompStat's "Transit" row lumps ALL seven major felonies together and can't
+  // be broken out into assault alone — so we stay in NYC Open Data's
+  // complaint-level feed, which lets us filter on offense AND location.
+  // That means the KPIs are framed as "most recent complete calendar year"
+  // (Open Data's transit_district tag isn't populated for the current YTD),
+  // not as year-to-date like the rest of the page.
   let monthlyRows = [];
   try {
     monthlyRows = await loadSubwayMonthly();
@@ -2271,77 +2276,40 @@ async function renderSubway() {
   }
   if (!monthlyRows.length) return;
 
-  // Try CompStat first — gives us 2026 YTD and same-period 2025 YTD for free.
-  // CompStat's "Transit" field covers ALL seven major felonies in the Transit
-  // Bureau jurisdiction (subway), not just felony assault. So we divide against
-  // citywide total-seven-major-felonies (apples-to-apples), not citywide felony
-  // assault alone.
-  const cs = await loadCompstat();
-  const csEnd = parseCompstatDate(cs?.citywide?.report_period?.week_end);
-  const transit = cs?.citywide?.additional_stats?.Transit?.year_to_date;
-  const totalMajor = cs?.citywide?.total_seven_major?.year_to_date;
+  const byYear = {};
+  monthlyRows.forEach(r => {
+    const y = Number(r.ym.slice(0, 4));
+    if (!y) return;
+    byYear[y] = (byYear[y] || 0) + Number(r.n);
+  });
+  const years = Object.keys(byYear).map(Number).sort();
+  const today = new Date();
+  const thisYear = today.getFullYear();
+  const latestComplete = years.filter(y => y < thisYear).pop() || years[years.length - 1];
+  const priorComplete = latestComplete - 1;
+  const subwayLatest = byYear[latestComplete] || 0;
+  const subwayPrior = byYear[priorComplete] || 0;
 
-  if (csEnd && transit && totalMajor) {
-    const rangeLabel = compstatRangeLabel(csEnd);          // "Jan 1 – Apr 12, 2026"
-    const priorRangeLabel = compstatPriorRangeLabel(csEnd); // "Jan 1 – Apr 12, 2025"
-    const subwayYTD = Number(transit.current_year) || 0;
-    const subwayPriorYTD = Number(transit.prior_year) || 0;
-    const cityYTD = Number(totalMajor.current_year) || 0;
-    const share = cityYTD ? (subwayYTD / cityYTD) * 100 : null;
-    const pctChg = subwayPriorYTD ? ((subwayYTD - subwayPriorYTD) / subwayPriorYTD) * 100 : null;
+  const citywide = await loadCitywideFelonyByYear([latestComplete]);
+  const cityLatest = citywide[latestComplete] || 0;
+  const share = cityLatest ? (subwayLatest / cityLatest) * 100 : null;
+  const pctChg = subwayPrior ? ((subwayLatest - subwayPrior) / subwayPrior) * 100 : null;
 
-    document.getElementById('subwayKpi1Label').textContent = `Major felony crimes in NYC Transit · ${rangeLabel}`;
-    document.getElementById('subwayKpi1Value').textContent = subwayYTD.toLocaleString();
-    document.getElementById('subwayKpi1Sub').innerHTML = pctChg == null
-      ? `Citywide major felonies this period: ${cityYTD.toLocaleString()}`
-      : `<span class="pill ${pctChg > 0 ? 'up' : pctChg < 0 ? 'down' : 'flat'}">${pctStr(pctChg)}</span> vs. ${priorRangeLabel} (${subwayPriorYTD.toLocaleString()})`;
+  document.getElementById('subwayKpi1Label').textContent = `Subway felony assaults · ${latestComplete}`;
+  document.getElementById('subwayKpi1Value').textContent = subwayLatest.toLocaleString();
+  document.getElementById('subwayKpi1Sub').innerHTML = pctChg == null
+    ? (cityLatest ? `Citywide that year: ${cityLatest.toLocaleString()}` : '')
+    : `<span class="pill ${pctChg > 0 ? 'up' : pctChg < 0 ? 'down' : 'flat'}">${pctStr(pctChg)}</span> vs. ${priorComplete} (${subwayPrior.toLocaleString()})`;
 
-    document.getElementById('subwayKpi2Label').textContent = `Share of citywide major felony crime · ${rangeLabel}`;
-    document.getElementById('subwayKpi2Value').textContent = share == null ? '—' : share.toFixed(1) + '%';
-    document.getElementById('subwayKpi2Sub').textContent = share == null
-      ? ''
-      : `Roughly 1 in ${Math.round(100 / share)} citywide major felony crimes`;
+  document.getElementById('subwayKpi2Label').textContent = `Share of citywide felony assaults · ${latestComplete}`;
+  document.getElementById('subwayKpi2Value').textContent = share == null ? '—' : share.toFixed(1) + '%';
+  document.getElementById('subwayKpi2Sub').textContent = share == null
+    ? ''
+    : `Roughly 1 in ${Math.round(100 / share)} citywide felony assaults`;
 
-    // Per-day: YTD ÷ number of days elapsed this year through the report's week end
-    const jan1 = new Date(csEnd.getFullYear(), 0, 1);
-    const days = Math.max(1, Math.round((csEnd - jan1) / 86400000) + 1);
-    const perDay = subwayYTD / days;
-    document.getElementById('subwayKpi3Value').textContent = perDay.toFixed(1);
-    document.getElementById('subwayKpi3Sub').textContent = `${rangeLabel} · across ~472 subway stations`;
-  } else {
-    // Fallback: CompStat unavailable — fall back to last complete year from Open Data.
-    const byYear = {};
-    monthlyRows.forEach(r => {
-      const y = Number(r.ym.slice(0, 4));
-      if (!y) return;
-      byYear[y] = (byYear[y] || 0) + Number(r.n);
-    });
-    const years = Object.keys(byYear).map(Number).sort();
-    const today = new Date();
-    const thisYear = today.getFullYear();
-    const latestComplete = years.filter(y => y < thisYear).pop() || years[years.length - 1];
-    const subwayLatest = byYear[latestComplete] || 0;
-
-    const citywide = await loadCitywideFelonyByYear([latestComplete]);
-    const cityLatest = citywide[latestComplete] || 0;
-    const share = cityLatest ? (subwayLatest / cityLatest) * 100 : null;
-
-    document.getElementById('subwayKpi1Label').textContent = `Subway felony assaults · ${latestComplete}`;
-    document.getElementById('subwayKpi1Value').textContent = subwayLatest.toLocaleString();
-    document.getElementById('subwayKpi1Sub').textContent = cityLatest
-      ? `Citywide that year: ${cityLatest.toLocaleString()}`
-      : '';
-
-    document.getElementById('subwayKpi2Label').textContent = `Share of citywide felony assaults · ${latestComplete}`;
-    document.getElementById('subwayKpi2Value').textContent = share == null ? '—' : share.toFixed(1) + '%';
-    document.getElementById('subwayKpi2Sub').textContent = share == null
-      ? ''
-      : `Roughly 1 in ${Math.round(100 / share)} citywide felony assaults`;
-
-    const perDay = subwayLatest / 365;
-    document.getElementById('subwayKpi3Value').textContent = perDay.toFixed(1);
-    document.getElementById('subwayKpi3Sub').textContent = `${latestComplete} average · across ~472 subway stations`;
-  }
+  const perDay = subwayLatest / 365;
+  document.getElementById('subwayKpi3Value').textContent = perDay.toFixed(1);
+  document.getElementById('subwayKpi3Sub').textContent = `${latestComplete} average · across ~472 subway stations`;
 
   // Render a monthly trendline
   const labels = monthlyRows.map(r => {
