@@ -729,7 +729,7 @@ table.data th.num { text-align: right; }
       <p class="source-line">Source: <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Current-Year-To-Date-/5uac-w243" target="_blank" rel="noopener">NYPD Complaint Data — Current (YTD)</a>.</p>
     </div>
     <div class="chart-card">
-      <h3>Year-over-year, by month</h3>
+      <h3>Each month vs. the same month last year</h3>
       <p class="chart-dek">Comparing each month in the latest full year to the same month a year earlier.</p>
       <div class="chart-holder h-md"><canvas id="yoyMonthChart"></canvas></div>
       <p class="source-line">Source: NYPD Complaint Data (Historic + YTD). Values are percent change from the same month a year earlier.</p>
@@ -744,13 +744,13 @@ table.data th.num { text-align: right; }
 
   <div class="chart-card">
     <h3 id="mapTitle">Rate per 100,000 residents, by precinct</h3>
-    <p class="chart-dek" id="mapDek">Assault complaints so far in 2026 divided by 2020 Census precinct population. Toggle to see raw volume, year-over-year percent change, or volume change.</p>
+    <p class="chart-dek" id="mapDek">Assault complaints in the latest period reported by NYPD, divided by 2020 Census precinct population. Toggle to see raw volume, percent change vs. the same period last year, or absolute change vs. the same period last year.</p>
 
     <div class="map-controls">
       <span class="ctl-label">Show</span>
       <button class="map-btn active" data-metric="rate">Rate per 100k</button>
-      <button class="map-btn" data-metric="pct">% change YoY</button>
-      <button class="map-btn" data-metric="vol">Change YoY (count)</button>
+      <button class="map-btn" data-metric="pct">% change vs. same period last year</button>
+      <button class="map-btn" data-metric="vol">Change vs. same period last year (count)</button>
       <button class="map-btn" data-metric="raw">YTD count</button>
     </div>
 
@@ -766,7 +766,7 @@ table.data th.num { text-align: right; }
     <div class="map-legend" id="mapLegend"></div>
 
     <p class="map-footnote">
-      <strong>&dagger; About the rate-per-100k metric:</strong> Rate is calculated against <em>resident</em> population from the 2020 Census. Five Manhattan precincts (marked &dagger; in the list below) have unusually low residential counts relative to the number of workers, commuters, shoppers, and tourists who pass through them on any given day &mdash; <strong>Midtown South (14th Pct.)</strong> has just 28,050 residents but handles Penn Station, Herald Square, and Times Square foot-traffic. Rates in those precincts will always look elevated, because the denominator under-counts the population actually exposed to crime there. Read the rate alongside the raw count and the year-over-year change, not alone.
+      <strong>&dagger; About the rate-per-100k metric:</strong> Rate is calculated against <em>resident</em> population from the 2020 Census. Five Manhattan precincts (marked &dagger; in the list below) have unusually low residential counts relative to the number of workers, commuters, shoppers, and tourists who pass through them on any given day &mdash; <strong>Midtown South (14th Pct.)</strong> has just 28,050 residents but handles Penn Station, Herald Square, and Times Square foot-traffic. Rates in those precincts will always look elevated, because the denominator under-counts the population actually exposed to crime there. Read the rate alongside the raw count and the change vs. the same period last year, not alone.
     </p>
 
     <h3 style="margin-top: 28px; font-size: 16px;" id="topListTitle">Top 10 precincts by rate per 100k</h3>
@@ -1905,7 +1905,7 @@ function renderAnnualTable(annual) {
     <th class="num">Felony assault</th>
     <th class="num">Misdemeanor assault</th>
     <th class="num">Total</th>
-    <th class="num">Felony YoY</th>
+    <th class="num">Felony vs. prior year</th>
   </tr></thead><tbody>`;
   years.forEach((y, i) => {
     const fel = annual.felony[y] != null ? annual.felony[y] : HISTORIC_FELONY[y];
