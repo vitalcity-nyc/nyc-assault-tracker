@@ -372,6 +372,39 @@ footer {
 .map-btn:hover { background: var(--vc-chartreuse-20); }
 .map-btn.active { background: var(--vc-black); color: var(--vc-white); }
 
+.map-type-btn {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 11px;
+  padding: 6px 12px;
+  border: 1px solid var(--vc-charcoal);
+  background: var(--vc-white);
+  color: var(--vc-charcoal);
+  cursor: pointer;
+  letter-spacing: 0.02em;
+}
+.map-type-btn:hover { background: var(--vc-cerulean-20); border-color: var(--vc-cerulean); color: var(--vc-cerulean); }
+.map-type-btn.active { background: var(--vc-cerulean); color: var(--vc-white); border-color: var(--vc-cerulean); }
+
+.map-footnote {
+  font-family: var(--font-primary);
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--vc-charcoal);
+  background: var(--vc-chartreuse-20);
+  border-left: 3px solid var(--vc-orange);
+  padding: 10px 14px;
+  margin: 18px 0 0;
+}
+.map-footnote strong { color: var(--vc-black); }
+.top-list .row.transient-flag .rank::after {
+  content: "\2020";
+  color: var(--vc-orange);
+  margin-left: 3px;
+  font-weight: 700;
+}
+
 .map-legend {
   display: flex;
   align-items: center;
@@ -706,29 +739,71 @@ table.data th.num { text-align: right; }
   <!-- Precinct map -->
   <div class="section-h">
     <h2>Where in the city</h2>
-    <span class="tag">By NYPD precinct · 2025</span>
+    <span class="tag" id="mapSectionTag">By NYPD precinct · 2026 YTD</span>
   </div>
 
   <div class="chart-card">
     <h3 id="mapTitle">Rate per 100,000 residents, by precinct</h3>
-    <p class="chart-dek" id="mapDek">2025 assault complaints divided by 2020 Census precinct population. Toggle to see raw volume, year-over-year percent change, or year-over-year volume change.</p>
+    <p class="chart-dek" id="mapDek">Assault complaints so far in 2026 divided by 2020 Census precinct population. Toggle to see raw volume, year-over-year percent change, or volume change.</p>
 
     <div class="map-controls">
       <span class="ctl-label">Show</span>
       <button class="map-btn active" data-metric="rate">Rate per 100k</button>
-      <button class="map-btn" data-metric="pct">% change vs. 2024</button>
-      <button class="map-btn" data-metric="vol">Change vs. 2024 (count)</button>
-      <button class="map-btn" data-metric="raw">2025 count</button>
+      <button class="map-btn" data-metric="pct">% change YoY</button>
+      <button class="map-btn" data-metric="vol">Change YoY (count)</button>
+      <button class="map-btn" data-metric="raw">YTD count</button>
+    </div>
+
+    <div class="map-controls" style="margin-top:-4px;">
+      <span class="ctl-label">Type</span>
+      <button class="map-type-btn active" data-type="combined">Felony + misdemeanor</button>
+      <button class="map-type-btn" data-type="felony">Felony only</button>
+      <button class="map-type-btn" data-type="misdem">Misdemeanor only</button>
     </div>
 
     <div id="precinctMap"></div>
 
     <div class="map-legend" id="mapLegend"></div>
 
+    <p class="map-footnote">
+      <strong>&dagger; About the rate-per-100k metric:</strong> Rate is calculated against <em>resident</em> population from the 2020 Census. Five Manhattan precincts (marked &dagger; in the list below) have unusually low residential counts relative to the number of workers, commuters, shoppers, and tourists who pass through them on any given day &mdash; <strong>Midtown South (14th Pct.)</strong> has just 28,050 residents but handles Penn Station, Herald Square, and Times Square foot-traffic. Rates in those precincts will always look elevated, because the denominator under-counts the population actually exposed to crime there. Read the rate alongside the raw count and the year-over-year change, not alone.
+    </p>
+
     <h3 style="margin-top: 28px; font-size: 16px;" id="topListTitle">Top 10 precincts by rate per 100k</h3>
     <div class="top-list" id="topList"></div>
 
-    <p class="source-line" style="margin-top: 18px;">Sources: <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Current-Year-To-Date-/5uac-w243" target="_blank" rel="noopener">NYPD Complaint Data — Current (YTD)</a> for 2025 counts; <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i" target="_blank" rel="noopener">NYPD Complaint Data — Historic</a> for 2024 counts; <a href="https://data.cityofnewyork.us/Public-Safety/Police-Precincts/y76i-bdw7" target="_blank" rel="noopener">NYC Open Data Police Precincts</a> GeoJSON for boundaries; 2020 Census Block-to-Precinct population crosswalk compiled by <a href="https://github.com/jkeefe/census-by-precincts" target="_blank" rel="noopener">John Keefe (MIT-licensed)</a>. Precinct 22 (Central Park) is excluded from rate calculations because it has a resident population of 129 — the rate would be misleadingly high. Population-based rates use the most recent decennial count (2020) and are not adjusted for precinct-level population change since then.</p>
+    <p class="source-line" style="margin-top: 18px;">Sources: <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Current-Year-To-Date-/5uac-w243" target="_blank" rel="noopener">NYPD Complaint Data &mdash; Current (YTD)</a> and <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i" target="_blank" rel="noopener">Historic</a> (whichever endpoint has the year being queried); <a href="https://data.cityofnewyork.us/Public-Safety/Police-Precincts/y76i-bdw7" target="_blank" rel="noopener">NYC Open Data Police Precincts</a> GeoJSON for boundaries; 2020 Census Block-to-Precinct population crosswalk compiled by <a href="https://github.com/jkeefe/census-by-precincts" target="_blank" rel="noopener">John Keefe (MIT-licensed)</a>. The range of months shown is whatever is most recently reported by NYPD &mdash; the comparison year is always the same months one year earlier, so partial-year data is compared like-for-like (Jan&ndash;Mar 2026 vs. Jan&ndash;Mar 2025, once 2026 data is published). Precinct 22 (Central Park) is excluded from rate calculations because it has a resident population of 129 &mdash; the rate would be misleadingly high. Population-based rates use the most recent decennial count (2020) and are not adjusted for precinct-level population change since then.</p>
+  </div>
+
+  <!-- Subway assault context box -->
+  <div class="section-h">
+    <h2>In the subway</h2>
+    <span class="tag">Transit-district felony assaults</span>
+  </div>
+  <div class="chart-card">
+    <h3>Subway felony assaults are a small share of the citywide total</h3>
+    <p class="chart-dek">Subway assaults get disproportionate news coverage. The absolute number is always worth keeping in view alongside the trendline &mdash; even in the peak years, fewer than 1 in 20 felony assaults citywide happened in the subway system.</p>
+
+    <div class="kpi-grid" style="margin:12px 0 20px;">
+      <div class="kpi">
+        <div class="label" id="subwayKpi1Label">Subway felony assaults &mdash; latest year</div>
+        <div class="value" id="subwayKpi1Value">&mdash;</div>
+        <div class="sub" id="subwayKpi1Sub">&mdash;</div>
+      </div>
+      <div class="kpi">
+        <div class="label" id="subwayKpi2Label">Share of citywide felony assaults</div>
+        <div class="value" id="subwayKpi2Value">&mdash;</div>
+        <div class="sub" id="subwayKpi2Sub">&mdash;</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Per day, on average</div>
+        <div class="value" id="subwayKpi3Value">&mdash;</div>
+        <div class="sub" id="subwayKpi3Sub">Across ~472 subway stations</div>
+      </div>
+    </div>
+
+    <div class="chart-holder h-md"><canvas id="subwayChart"></canvas></div>
+    <p class="source-line"><a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i" target="_blank" rel="noopener">NYPD Complaint Data &mdash; Historic</a> and <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Current-Year-To-Date-/5uac-w243" target="_blank" rel="noopener">Current (YTD)</a>, filtered on <code>transit_district IS NOT NULL</code>, which NYPD uses to flag complaints that occurred within the New York City Transit police districts (the subway system). Excludes LIRR, Metro-North, PATH, and NYC Ferry. The 2026 series is a partial year.</p>
   </div>
 
   <!-- Annual totals table -->
@@ -1018,12 +1093,85 @@ async function loadAnnual() {
   return [...hist, ...ytd];
 }
 
-async function loadPrecinct(endpoint, year) {
-  return soql(endpoint,
-    `SELECT addr_pct_cd, count(*) AS n
+async function loadPrecinctYTD(year, endMonth) {
+  // Load Jan–endMonth of `year`, split by felony/misdemeanor.
+  // Queries BOTH historic and YTD endpoints because 2025 straddles the rollover
+  // (may live in either, depending on when NYC Open Data last promoted YTD to Historic).
+  const q =
+    `SELECT addr_pct_cd, law_cat_cd, count(*) AS n
      WHERE (ofns_desc='FELONY ASSAULT' OR ofns_desc='ASSAULT 3 & RELATED OFFENSES')
-       AND date_extract_y(cmplnt_fr_dt)=${year} AND addr_pct_cd IS NOT NULL
-     GROUP BY addr_pct_cd`);
+       AND date_extract_y(cmplnt_fr_dt)=${year}
+       AND date_extract_m(cmplnt_fr_dt) <= ${endMonth}
+       AND addr_pct_cd IS NOT NULL
+     GROUP BY addr_pct_cd, law_cat_cd`;
+  const [hist, ytd] = await Promise.all([
+    soql(ENDPOINTS.historic, q).catch(() => []),
+    soql(ENDPOINTS.ytd, q).catch(() => []),
+  ]);
+  // If both returned data, prefer whichever has more rows (the live home for that year).
+  // If only one, use it. If both are empty, return empty.
+  if (hist.length && ytd.length) return hist.length >= ytd.length ? hist : ytd;
+  return hist.length ? hist : ytd;
+}
+
+async function getEffectivePeriod() {
+  // Returns { year, endMonth } — the most recent period in NYC Open Data with
+  // substantially complete data. Used to drive the precinct-map comparison:
+  // Jan–endMonth of `year` vs. Jan–endMonth of `year - 1`. If the latest month is
+  // fully reported (day >= 25), it is included. If the max date is December of a
+  // year, the comparison is effectively full year vs full year.
+  const r = await soql(ENDPOINTS.ytd,
+    `SELECT max(cmplnt_fr_dt) AS max_dt
+     WHERE (ofns_desc='FELONY ASSAULT' OR ofns_desc='ASSAULT 3 & RELATED OFFENSES')`);
+  if (!r.length || !r[0].max_dt) return null;
+  const dt = new Date(r[0].max_dt);
+  const year = dt.getUTCFullYear();
+  const day = dt.getUTCDate();
+  const month = dt.getUTCMonth() + 1;
+  const endMonth = day >= 25 ? month : Math.max(1, month - 1);
+  return { year, endMonth };
+}
+
+async function loadSubwayMonthly() {
+  // Monthly felony-assault counts, subway only (transit_district IS NOT NULL).
+  const q = (minYear) =>
+    `SELECT date_trunc_ym(cmplnt_fr_dt) AS ym, count(*) AS n
+     WHERE ofns_desc='FELONY ASSAULT'
+       AND transit_district IS NOT NULL
+       AND date_extract_y(cmplnt_fr_dt) >= ${minYear}
+     GROUP BY ym ORDER BY ym`;
+  const [hist, ytd] = await Promise.all([
+    soql(ENDPOINTS.historic, q(2019)).catch(() => []),
+    soql(ENDPOINTS.ytd, q(2019)).catch(() => []),
+  ]);
+  // Dedupe by ym, prefer larger n (in case of small overlap)
+  const map = {};
+  [...hist, ...ytd].forEach(r => {
+    if (!r.ym) return;
+    const key = r.ym.slice(0, 7);
+    const n = Number(r.n);
+    if (!(key in map) || n > map[key]) map[key] = n;
+  });
+  return Object.keys(map).sort().map(ym => ({ ym, n: map[ym] }));
+}
+
+async function loadCitywideFelonyByYear(years) {
+  // Total citywide felony-assault counts for each year in `years`, for subway share context.
+  const out = {};
+  await Promise.all(years.map(async y => {
+    const q =
+      `SELECT count(*) AS n
+       WHERE ofns_desc='FELONY ASSAULT'
+         AND date_extract_y(cmplnt_fr_dt)=${y}`;
+    const [hist, ytd] = await Promise.all([
+      soql(ENDPOINTS.historic, q).catch(() => []),
+      soql(ENDPOINTS.ytd, q).catch(() => []),
+    ]);
+    const rows = [...hist, ...ytd];
+    const n = rows.reduce((m, r) => Math.max(m, Number(r.n) || 0), 0);
+    out[y] = n;
+  }));
+  return out;
 }
 
 async function loadPrecinctGeo() {
@@ -1427,7 +1575,27 @@ function renderYoYMonth(monthlySeries, latestYear) {
 }
 
 // ---- Precinct map ----
-const MAP_STATE = { metric: 'rate', geo: null, layer: null, map: null, counts: {} };
+// Precincts where resident population sharply understates daily exposure
+// (huge commuter / tourist / shopper flows relative to residents).
+// Flagged with a † in the top-list and called out in a footnote below the map.
+const HIGH_TRANSIENT_PRECINCTS = new Set(['1', '5', '14', '17', '18']);
+
+const MAP_STATE = {
+  metric: 'rate',
+  type: 'combined', // 'combined' | 'felony' | 'misdem'
+  geo: null,
+  layer: null,
+  map: null,
+  counts: {
+    current: { FELONY: {}, MISDEMEANOR: {} },
+    prior:   { FELONY: {}, MISDEMEANOR: {} },
+  },
+  ytdEndMonth: null,
+  currentYear: null,
+  priorYear: null,
+  rangeLabel: '',
+  priorRangeLabel: '',
+};
 
 // 5-step gradient for VC data viz
 // Primary (worse): chartreuse -> safety orange -> red
@@ -1459,17 +1627,29 @@ function symmetricBreaks(values) {
   return [-capR, -capR / 3, capR / 3, capR];
 }
 
+function precinctCount(period, precinct) {
+  // Return the count for a given period ('current' | 'prior') and precinct,
+  // respecting the current type toggle (combined, felony only, misdemeanor only).
+  const c = MAP_STATE.counts[period];
+  const p = String(precinct);
+  const f = c.FELONY[p] || 0;
+  const m = c.MISDEMEANOR[p] || 0;
+  if (MAP_STATE.type === 'felony') return f;
+  if (MAP_STATE.type === 'misdem') return m;
+  return f + m;
+}
+
 function precinctMetric(precinct, metric) {
   const p = String(precinct);
-  const c25 = MAP_STATE.counts['2025'][p] || 0;
-  const c24 = MAP_STATE.counts['2024'][p] || 0;
+  const cur = precinctCount('current', p);
+  const prv = precinctCount('prior', p);
   const pop = PRECINCT_POP_2020[p];
-  if (metric === 'raw') return c25;
-  if (metric === 'vol') return c25 - c24;
-  if (metric === 'pct') return c24 ? ((c25 - c24) / c24) * 100 : null;
+  if (metric === 'raw') return cur;
+  if (metric === 'vol') return cur - prv;
+  if (metric === 'pct') return prv ? ((cur - prv) / prv) * 100 : null;
   if (metric === 'rate') {
     if (!pop || pop < 1000) return null; // exclude tiny-pop precincts like Central Park
-    return (c25 / pop) * 100000;
+    return (cur / pop) * 100000;
   }
   return null;
 }
@@ -1492,27 +1672,46 @@ function colorFor(value, metric, breaks) {
   return SEQ_BAD[4];
 }
 
+function typeLabel() {
+  if (MAP_STATE.type === 'felony') return 'felony assault';
+  if (MAP_STATE.type === 'misdem') return 'misdemeanor assault';
+  return 'assault (felony + misdemeanor)';
+}
+
 function formatMetric(value, metric) {
   if (value == null || isNaN(value)) return '—';
   if (metric === 'pct') return (value > 0 ? '+' : '') + value.toFixed(1) + '%';
-  if (metric === 'vol') return (value > 0 ? '+' : '') + value.toLocaleString() + ' vs. 2024';
+  if (metric === 'vol') return (value > 0 ? '+' : '') + value.toLocaleString() + ' vs. ' + MAP_STATE.priorRangeLabel;
   if (metric === 'rate') return Math.round(value).toLocaleString() + ' per 100k';
   return value.toLocaleString();
 }
 
 function metricMeta(metric) {
-  if (metric === 'rate') return { title: 'Rate per 100,000 residents, by precinct',
-    dek: '2025 assault complaints (felony + misdemeanor) divided by 2020 Census precinct population. Precinct 22 (Central Park) excluded — its tiny resident population would distort the rate.',
-    topTitle: 'Top 10 precincts by rate per 100k', palette: SEQ_BAD, low: 'Lower rate', high: 'Higher rate' };
-  if (metric === 'pct') return { title: 'Year-over-year percent change, by precinct',
-    dek: '2025 vs. 2024 assault complaint counts. Orange/red = increasing; green/chartreuse = decreasing.',
-    topTitle: 'Top 10 precincts by % increase vs. 2024', palette: DIV, low: 'Decreasing', high: 'Increasing' };
-  if (metric === 'vol') return { title: 'Year-over-year change in count, by precinct',
-    dek: 'Absolute change in assault complaints from 2024 to 2025. Orange/red = more complaints; green/chartreuse = fewer.',
-    topTitle: 'Top 10 precincts by volume increase vs. 2024', palette: DIV, low: 'Fewer', high: 'More' };
-  return { title: 'Raw 2025 complaint count, by precinct',
-    dek: 'Total felony + misdemeanor assault complaints filed with the NYPD in 2025, by precinct. Counts are raw volume — not adjusted for population.',
-    topTitle: 'Top 10 precincts by 2025 count', palette: SEQ_BAD, low: 'Lower', high: 'Higher' };
+  const range = MAP_STATE.rangeLabel || 'YTD';
+  const priorRange = MAP_STATE.priorRangeLabel || 'prior YTD';
+  const isFullYear = MAP_STATE.ytdEndMonth === 12;
+  const t = typeLabel();
+  const ratePartialNote = isFullYear ? '' : ' This is a partial-year rate — not annualized.';
+  if (metric === 'rate') return {
+    title: `Rate per 100,000 residents, by precinct (${range})`,
+    dek: `${range} ${t} complaints divided by 2020 Census precinct population.${ratePartialNote} Precinct 22 (Central Park) excluded. See the footnote on rates in commuter-heavy precincts.`,
+    topTitle: `Top 10 precincts by rate per 100k (${range})`,
+    palette: SEQ_BAD, low: 'Lower rate', high: 'Higher rate' };
+  if (metric === 'pct') return {
+    title: `Percent change vs. ${priorRange}, by precinct`,
+    dek: `${range} ${t} complaints compared to ${priorRange}. Orange/red = increasing; green/chartreuse = decreasing.`,
+    topTitle: `Top 10 precincts by % increase vs. ${priorRange}`,
+    palette: DIV, low: 'Decreasing', high: 'Increasing' };
+  if (metric === 'vol') return {
+    title: `Change in count vs. ${priorRange}, by precinct`,
+    dek: `Absolute change in ${t} complaints from ${priorRange} to ${range}. Orange/red = more complaints; green/chartreuse = fewer.`,
+    topTitle: `Top 10 precincts by volume increase vs. ${priorRange}`,
+    palette: DIV, low: 'Fewer', high: 'More' };
+  return {
+    title: `${range} complaint count, by precinct`,
+    dek: `Total ${t} complaints filed with the NYPD in ${range}, by precinct. Raw volume — not adjusted for population.`,
+    topTitle: `Top 10 precincts by ${range} count`,
+    palette: SEQ_BAD, low: 'Lower', high: 'Higher' };
 }
 
 function renderLegend(metric, breaks) {
@@ -1538,16 +1737,20 @@ function renderTopList(metric) {
   const rows = precincts.map(p => ({
     p,
     v: precinctMetric(p, metric),
-    raw: MAP_STATE.counts['2025'][p] || 0,
-    prev: MAP_STATE.counts['2024'][p] || 0
+    raw: precinctCount('current', p),
+    prev: precinctCount('prior', p),
   })).filter(r => r.v != null);
   rows.sort((a, b) => b.v - a.v);
   const top = rows.slice(0, 10);
   const html = top.map((r, i) => {
     const hood = PRECINCT_HOOD[r.p] || '—';
-    return `<div class="row">
+    const flag = (metric === 'rate' && HIGH_TRANSIENT_PRECINCTS.has(r.p)) ? ' transient-flag' : '';
+    const daggerNote = (metric === 'rate' && HIGH_TRANSIENT_PRECINCTS.has(r.p))
+      ? ' <span style="color:var(--vc-orange);font-weight:700;" title="Commuter/tourist-heavy precinct; rate per resident overstates exposure. See footnote.">&dagger;</span>'
+      : '';
+    return `<div class="row${flag}">
       <div class="rank">${i+1}</div>
-      <div><strong>${r.p} Pct.</strong><div class="hood">${hood}</div></div>
+      <div><strong>${r.p} Pct.</strong>${daggerNote}<div class="hood">${hood}</div></div>
       <div class="val">${formatMetric(r.v, metric)}</div>
     </div>`;
   }).join('');
@@ -1580,18 +1783,25 @@ function drawChoropleth(metric) {
       };
     },
     onEachFeature: (feature, layer) => {
-      const p = feature.properties.precinct;
-      const c25 = MAP_STATE.counts['2025'][p] || 0;
-      const c24 = MAP_STATE.counts['2024'][p] || 0;
+      const p = String(feature.properties.precinct);
+      const cur = precinctCount('current', p);
+      const prv = precinctCount('prior', p);
       const pop = PRECINCT_POP_2020[p] || 'unknown';
       const hood = PRECINCT_HOOD[p] || '';
       const v = precinctMetric(p, metric);
-
+      const cFel = MAP_STATE.counts.current.FELONY[p] || 0;
+      const cMis = MAP_STATE.counts.current.MISDEMEANOR[p] || 0;
+      const transientNote = HIGH_TRANSIENT_PRECINCTS.has(p)
+        ? `<div style="margin-top:4px;font-size:11px;color:var(--vc-chartreuse);"><strong>&dagger;</strong> commuter/tourist-heavy; rate understates exposure</div>`
+        : '';
       const tipHTML =
         `<strong>${p} Pct.</strong>` +
         `<div class="hood">${hood}</div>` +
         `<div class="metric">${formatMetric(v, metric)}</div>` +
-        `<div style="margin-top:6px;font-size:11px;color:#aaa;">2025: ${c25.toLocaleString()} · 2024: ${c24.toLocaleString()} · Pop. (2020): ${pop.toLocaleString()}</div>`;
+        `<div style="margin-top:6px;font-size:11px;color:#aaa;">` +
+        `${MAP_STATE.rangeLabel}: ${cur.toLocaleString()} (F ${cFel.toLocaleString()} &middot; M ${cMis.toLocaleString()}) &middot; ` +
+        `${MAP_STATE.priorRangeLabel}: ${prv.toLocaleString()} &middot; Pop. (2020): ${typeof pop === 'number' ? pop.toLocaleString() : pop}` +
+        `</div>${transientNote}`;
       layer.bindTooltip(tipHTML, { className: 'pct-tip', sticky: true });
       layer.on('mouseover', () => layer.setStyle({ weight: 2, color: '#050507' }));
       layer.on('mouseout', () => MAP_STATE.layer.resetStyle(layer));
@@ -1604,15 +1814,55 @@ function drawChoropleth(metric) {
   document.querySelectorAll('.map-btn').forEach(b => b.classList.toggle('active', b.dataset.metric === metric));
 }
 
+const MONTH_ABBR = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function ingestPrecinctRows(rows, bucket) {
+  bucket.FELONY = {};
+  bucket.MISDEMEANOR = {};
+  rows.forEach(r => {
+    const p = String(Number(r.addr_pct_cd));
+    const cat = r.law_cat_cd;
+    if (!(cat in bucket)) return;
+    bucket[cat][p] = (bucket[cat][p] || 0) + Number(r.n);
+  });
+}
+
+function rangeLabelFor(year, endMonth) {
+  if (endMonth === 12) return String(year);          // full year
+  if (endMonth === 1) return `Jan ${year}`;
+  return `Jan–${MONTH_ABBR[endMonth - 1]} ${year}`;  // Jan–Mar 2026, Jan–Nov 2025, etc.
+}
+
 async function initMap() {
-  const [geo, p25, p24] = await Promise.all([
+  // Figure out the latest period with substantially complete data on NYC Open Data.
+  // The "current" period and the "prior" period are always the same months — the
+  // prior is shifted one year back so the comparison is apples-to-apples.
+  const period = await getEffectivePeriod();
+  const currentYear = period ? period.year : 2025;
+  const endMonth = period ? period.endMonth : 12;
+  const priorYear = currentYear - 1;
+
+  MAP_STATE.ytdEndMonth = endMonth;
+  MAP_STATE.currentYear = currentYear;
+  MAP_STATE.priorYear = priorYear;
+  MAP_STATE.rangeLabel = rangeLabelFor(currentYear, endMonth);
+  MAP_STATE.priorRangeLabel = rangeLabelFor(priorYear, endMonth);
+
+  // Update the section tag to reflect the actual range we'll show.
+  // If endMonth < 12 we're in YTD territory; if 12 we're comparing full years.
+  const tagEl = document.getElementById('mapSectionTag');
+  if (tagEl) tagEl.textContent = endMonth === 12
+    ? `By NYPD precinct · ${MAP_STATE.rangeLabel} vs. ${MAP_STATE.priorRangeLabel}`
+    : `By NYPD precinct · ${MAP_STATE.rangeLabel} YTD vs. ${MAP_STATE.priorRangeLabel}`;
+
+  const [geo, pCur, pPri] = await Promise.all([
     loadPrecinctGeo(),
-    loadPrecinct(ENDPOINTS.ytd, 2025),
-    loadPrecinct(ENDPOINTS.historic, 2024)
+    loadPrecinctYTD(currentYear, endMonth),
+    loadPrecinctYTD(priorYear, endMonth),
   ]);
   MAP_STATE.geo = geo;
-  MAP_STATE.counts['2025'] = Object.fromEntries(p25.map(r => [String(Number(r.addr_pct_cd)), Number(r.n)]));
-  MAP_STATE.counts['2024'] = Object.fromEntries(p24.map(r => [String(Number(r.addr_pct_cd)), Number(r.n)]));
+  ingestPrecinctRows(pCur, MAP_STATE.counts.current);
+  ingestPrecinctRows(pPri, MAP_STATE.counts.prior);
 
   MAP_STATE.map = L.map('precinctMap', {
     scrollWheelZoom: false,
@@ -1632,6 +1882,13 @@ async function initMap() {
   document.querySelectorAll('.map-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       MAP_STATE.metric = btn.dataset.metric;
+      drawChoropleth(MAP_STATE.metric);
+    });
+  });
+  document.querySelectorAll('.map-type-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      MAP_STATE.type = btn.dataset.type;
+      document.querySelectorAll('.map-type-btn').forEach(b => b.classList.toggle('active', b.dataset.type === MAP_STATE.type));
       drawChoropleth(MAP_STATE.metric);
     });
   });
@@ -1665,6 +1922,108 @@ function renderAnnualTable(annual) {
   });
   html += '</tbody></table>';
   document.getElementById('annualTable').innerHTML = html;
+}
+
+async function renderSubway() {
+  let monthlyRows = [];
+  try {
+    monthlyRows = await loadSubwayMonthly();
+  } catch (e) {
+    console.warn('Subway load failed', e);
+    return;
+  }
+  if (!monthlyRows.length) return;
+
+  // Aggregate by year for KPIs and for the share-of-citywide calc
+  const byYear = {};
+  monthlyRows.forEach(r => {
+    const y = Number(r.ym.slice(0, 4));
+    if (!y) return;
+    byYear[y] = (byYear[y] || 0) + Number(r.n);
+  });
+  const years = Object.keys(byYear).map(Number).sort();
+  // Pick the most recent complete calendar year for KPIs
+  const today = new Date();
+  const thisYear = today.getFullYear();
+  const latestComplete = years.filter(y => y < thisYear).pop() || years[years.length - 1];
+  const subwayLatest = byYear[latestComplete] || 0;
+
+  // Citywide denominator for share calc
+  const citywide = await loadCitywideFelonyByYear([latestComplete]);
+  const cityLatest = citywide[latestComplete] || 0;
+  const share = cityLatest ? (subwayLatest / cityLatest) * 100 : null;
+
+  document.getElementById('subwayKpi1Label').textContent = `Subway felony assaults · ${latestComplete}`;
+  document.getElementById('subwayKpi1Value').textContent = subwayLatest.toLocaleString();
+  document.getElementById('subwayKpi1Sub').textContent = cityLatest
+    ? `Citywide that year: ${cityLatest.toLocaleString()}`
+    : '';
+
+  document.getElementById('subwayKpi2Label').textContent = `Share of citywide felony assaults · ${latestComplete}`;
+  document.getElementById('subwayKpi2Value').textContent = share == null ? '—' : share.toFixed(1) + '%';
+  document.getElementById('subwayKpi2Sub').textContent = share == null
+    ? ''
+    : `Roughly 1 in ${Math.round(100 / share)} citywide felony assaults`;
+
+  const perDay = subwayLatest / 365;
+  document.getElementById('subwayKpi3Value').textContent = perDay.toFixed(1);
+  document.getElementById('subwayKpi3Sub').textContent = `${latestComplete} average · across ~472 subway stations`;
+
+  // Render a monthly trendline
+  const labels = monthlyRows.map(r => {
+    const [y, m] = r.ym.slice(0, 7).split('-').map(Number);
+    return new Date(y, m - 1, 1);
+  });
+  const values = monthlyRows.map(r => Number(r.n));
+
+  new Chart(document.getElementById('subwayChart'), {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Monthly subway felony assault complaints',
+        data: values,
+        backgroundColor: COLORS.indigo,
+        borderColor: COLORS.indigo,
+        borderWidth: 2,
+        pointRadius: 0,
+        pointHoverRadius: 4,
+        tension: 0.25,
+        fill: false,
+      }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            title: ctx => {
+              const d = ctx[0].parsed.x;
+              const date = new Date(d);
+              return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+            },
+            label: ctx => ctx.parsed.y.toLocaleString() + ' felony assault complaints',
+          },
+        },
+      },
+      scales: {
+        x: {
+          type: 'time',
+          time: { unit: 'year', displayFormats: { year: 'yyyy' } },
+          grid: { display: false },
+          ticks: { color: COLORS.charcoal },
+        },
+        y: {
+          beginAtZero: true,
+          grid: { color: '#eeeeee' },
+          ticks: { color: COLORS.charcoal, precision: 0 },
+          title: { display: true, text: 'Complaints per month', color: COLORS.charcoal, font: { size: 11 } },
+        },
+      },
+    },
+  });
 }
 
 function updateStamps(meta) {
@@ -1791,6 +2150,7 @@ async function main() {
     renderBorough(boroRaw, latestYear);
 
     await initMap();
+    await renderSubway();
     await loadCaseLog();
   } catch (e) {
     console.error(e);
