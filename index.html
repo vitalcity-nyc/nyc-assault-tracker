@@ -463,6 +463,121 @@ footer {
 }
 .baseline-headline strong { font-weight: 700; }
 
+/* Sticky section nav: collapses to a horizontal scroll on mobile */
+.section-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: saturate(140%) blur(6px);
+  -webkit-backdrop-filter: saturate(140%) blur(6px);
+  border-bottom: 1px solid var(--vc-cloud);
+  margin: 0 -16px 18px;
+  padding: 8px 16px;
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.section-nav::-webkit-scrollbar { height: 4px; }
+.section-nav::-webkit-scrollbar-thumb { background: var(--vc-cloud); }
+.section-nav a {
+  flex: 0 0 auto;
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--vc-charcoal);
+  text-decoration: none;
+  padding: 6px 10px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.section-nav a:hover, .section-nav a:focus { background: var(--vc-cloud); color: var(--vc-black); border-color: var(--vc-cloud); }
+.section-nav a.active { background: var(--vc-black); color: var(--vc-white); }
+
+/* When the page anchor scrolls into view, leave room for the sticky nav. */
+[id^="section-"] { scroll-margin-top: 68px; }
+
+/* When-heatmap (hour x day) */
+.when-heatmap {
+  display: grid;
+  grid-template-columns: 60px repeat(24, minmax(14px, 1fr));
+  gap: 2px;
+  margin: 6px 0 4px;
+  font-family: var(--font-primary);
+  font-size: 10px;
+  color: var(--vc-charcoal);
+}
+.when-heatmap .wh-row-label {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: var(--vc-black);
+  align-self: center;
+  padding-right: 6px;
+}
+.when-heatmap .wh-cell {
+  aspect-ratio: 1 / 1;
+  border-radius: 2px;
+  transition: outline 0.1s;
+  cursor: default;
+}
+.when-heatmap .wh-cell:hover { outline: 2px solid var(--vc-black); }
+.when-heatmap .wh-hour-row {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 60px repeat(24, minmax(14px, 1fr));
+  gap: 2px;
+  margin-top: 4px;
+  color: var(--vc-charcoal);
+}
+.when-heatmap .wh-hour-row span { text-align: center; font-size: 10px; line-height: 1; }
+.when-heatmap .wh-hour-row span:first-child { text-align: left; padding-right: 6px; }
+.when-legend {
+  font-family: var(--font-primary);
+  font-size: 11px;
+  color: var(--vc-charcoal);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0 12px;
+}
+.when-legend-bar {
+  flex: 0 0 200px;
+  height: 8px;
+  border-radius: 2px;
+  background: linear-gradient(to right, #f3f4f8, #4a55b5);
+}
+@media (max-width: 720px) {
+  .when-heatmap { grid-template-columns: 36px repeat(24, minmax(8px, 1fr)); font-size: 9px; }
+  .when-heatmap .wh-hour-row { grid-template-columns: 36px repeat(24, minmax(8px, 1fr)); }
+  .when-legend-bar { flex: 0 0 120px; }
+}
+
+/* Venue grid: side-by-side on wide, stacked on narrow */
+.venue-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin: 4px 0 6px;
+}
+.mini-h {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--vc-charcoal);
+  margin: 0 0 6px;
+}
+@media (max-width: 720px) {
+  .venue-grid { grid-template-columns: 1fr; gap: 14px; }
+}
+
 .map-footnote {
   font-family: var(--font-primary);
   font-weight: 300;
@@ -718,6 +833,20 @@ table.data th.num { text-align: right; }
 @media (max-width: 720px) {
   .case-entry { grid-template-columns: 32px 1fr; gap: 10px; }
   .case-filter-bar input[type="search"] { min-width: 140px; }
+  /* Map controls: tighter padding, smaller font on phones */
+  .map-btn, .map-type-btn { font-size: 10px; padding: 6px 9px; letter-spacing: 0; }
+  .chart-toggle-btn { font-size: 10px; padding: 5px 9px; }
+  /* Section nav: pull margin in on small screens so the bar reaches the edges */
+  .section-nav { margin: 0 -16px 14px; padding: 7px 12px; gap: 4px; }
+  .section-nav a { font-size: 11px; padding: 5px 8px; }
+  /* Methodology + sticky offset slightly tighter */
+  [id^="section-"] { scroll-margin-top: 60px; }
+  /* h1 and headers a notch smaller */
+  .title { font-size: 30px; line-height: 1.1; }
+  .baseline-slider-wrap { padding: 12px 14px; }
+  .baseline-headline { font-size: 14px; }
+  /* Borough chart label rotation for narrow screens */
+  #boroughChart { max-width: 100%; }
 }
 </style>
 </head>
@@ -731,6 +860,20 @@ table.data th.num { text-align: right; }
   <p class="stamp" id="dataStamp"><span class="dot"></span>Fetching latest data from NYC Open Data…</p>
 
   <hr class="rule">
+
+  <!-- Sticky section nav -->
+  <nav class="section-nav" id="sectionNav" aria-label="Page sections">
+    <a href="#section-trends">Trends</a>
+    <a href="#section-baseline">Baselines</a>
+    <a href="#section-where">Boroughs</a>
+    <a href="#section-when">When</a>
+    <a href="#section-venue">Where</a>
+    <a href="#section-map">Map</a>
+    <a href="#section-subway">Subway</a>
+    <a href="#section-annual">Annual</a>
+    <a href="#section-cases">Cases</a>
+    <a href="#section-method">Methodology</a>
+  </nav>
 
   <!-- KPIs -->
   <div class="kpi-grid" id="kpiGrid">
@@ -759,7 +902,7 @@ table.data th.num { text-align: right; }
   <div id="errorBox"></div>
 
   <!-- Trendline: monthly -->
-  <div class="section-h">
+  <div class="section-h" id="section-trends">
     <h2>Current trendlines</h2>
     <span class="tag">Monthly complaints</span>
   </div>
@@ -776,7 +919,7 @@ table.data th.num { text-align: right; }
   </div>
 
   <!-- The baseline chart (explicitly requested) -->
-  <div class="section-h">
+  <div class="section-h" id="section-baseline">
     <h2>How today compares to any year since 1993</h2>
     <span class="tag">Pick a baseline with the slider</span>
   </div>
@@ -811,7 +954,7 @@ table.data th.num { text-align: right; }
   </div>
 
   <!-- Borough and category -->
-  <div class="section-h">
+  <div class="section-h" id="section-where">
     <h2>Where and how</h2>
     <span class="tag">Latest full year</span>
   </div>
@@ -835,8 +978,52 @@ table.data th.num { text-align: right; }
     </div>
   </div>
 
+  <!-- When: hour-of-day x day-of-week heatmap -->
+  <div class="section-h" id="section-when">
+    <h2>When assaults happen</h2>
+    <span class="tag" id="whenTag">Hour of day &middot; day of week</span>
+  </div>
+  <div class="chart-card">
+    <h3 id="whenTitle">Hourly pattern of assault complaints</h3>
+    <p class="chart-dek" id="whenDek">Each cell is a count of assault complaints filed with the NYPD at that hour, on that day of the week, citywide. Darker cells mean more incidents. Pattern is stable year over year — late nights on Friday and Saturday peak; mid-mornings have the lowest volume. Uses NYC Open Data complaint-level records, which lag by a quarter, so the year shown is the most recent one with substantially complete coverage.</p>
+    <div class="chart-toggle" role="tablist" aria-label="Heatmap offense">
+      <button class="chart-toggle-btn active" data-when="combined" aria-pressed="true">All assault</button>
+      <button class="chart-toggle-btn" data-when="felony" aria-pressed="false">Felony only</button>
+      <button class="chart-toggle-btn" data-when="misdem" aria-pressed="false">Misdemeanor only</button>
+    </div>
+    <div id="whenHeatmap" class="when-heatmap" aria-label="Hour by day-of-week heatmap"></div>
+    <p class="when-legend"><span id="whenLegendLow">low</span><span class="when-legend-bar" id="whenLegendBar"></span><span id="whenLegendHigh">high</span></p>
+    <p class="source-line"><a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i" target="_blank" rel="noopener">NYPD Complaint Data &mdash; Historic</a> and <a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Current-Year-To-Date-/5uac-w243" target="_blank" rel="noopener">Current (YTD)</a>, hour extracted from <code>cmplnt_fr_tm</code>, day of week from <code>cmplnt_fr_dt</code>. The year shown auto-updates to the most recent year with at least 30,000 records (Open Data publishes location-tagged 2026 records on a quarterly lag).</p>
+  </div>
+
+  <!-- Where: venue type / indoor-outdoor -->
+  <div class="section-h" id="section-venue">
+    <h2>Where assaults happen</h2>
+    <span class="tag">Venue type &middot; indoor vs. outdoor</span>
+  </div>
+  <div class="chart-card">
+    <h3 id="venueTitle">Top venues for assault complaints</h3>
+    <p class="chart-dek" id="venueDek">The 12 most common premises types reported in assault complaints, alongside an indoor vs. outdoor split. Premises classification is what the responding officer recorded at the scene, not what the suspect or victim necessarily described.</p>
+    <div class="chart-toggle" role="tablist" aria-label="Venue offense">
+      <button class="chart-toggle-btn active" data-venue="combined" aria-pressed="true">All assault</button>
+      <button class="chart-toggle-btn" data-venue="felony" aria-pressed="false">Felony only</button>
+      <button class="chart-toggle-btn" data-venue="misdem" aria-pressed="false">Misdemeanor only</button>
+    </div>
+    <div class="venue-grid">
+      <div>
+        <h4 class="mini-h">Top 12 venue types</h4>
+        <div class="chart-holder h-md"><canvas id="venueChart"></canvas></div>
+      </div>
+      <div>
+        <h4 class="mini-h">Indoor vs. outdoor</h4>
+        <div class="chart-holder h-md"><canvas id="indoorOutdoorChart"></canvas></div>
+      </div>
+    </div>
+    <p class="source-line"><a href="https://data.cityofnewyork.us/Public-Safety/NYPD-Complaint-Data-Historic/qgea-i56i" target="_blank" rel="noopener">NYPD Complaint Data</a>, fields <code>prem_typ_desc</code> and <code>loc_of_occur_desc</code>. The year shown auto-updates to the most recent year with at least 30,000 records.</p>
+  </div>
+
   <!-- Precinct map -->
-  <div class="section-h">
+  <div class="section-h" id="section-map">
     <h2>Where in the city</h2>
     <span class="tag" id="mapSectionTag">By NYPD precinct &middot; 2026 YTD vs. 2025 YTD</span>
   </div>
@@ -881,7 +1068,7 @@ table.data th.num { text-align: right; }
   </div>
 
   <!-- Subway assault context box -->
-  <div class="section-h">
+  <div class="section-h" id="section-subway">
     <h2>In the subway</h2>
     <span class="tag">NYC Transit police jurisdiction</span>
   </div>
@@ -914,7 +1101,7 @@ table.data th.num { text-align: right; }
   </div>
 
   <!-- Annual totals table -->
-  <div class="section-h">
+  <div class="section-h" id="section-annual">
     <h2>Annual totals, at a glance</h2>
     <span class="tag">Every year the NYPD has published</span>
   </div>
@@ -924,7 +1111,7 @@ table.data th.num { text-align: right; }
   </div>
 
   <!-- 2026 case log -->
-  <div class="section-h">
+  <div class="section-h" id="section-cases">
     <h2>2026 case log</h2>
     <span class="tag">Named cases, running total</span>
   </div>
@@ -982,7 +1169,7 @@ table.data th.num { text-align: right; }
   </div>
 
   <!-- Methodology -->
-  <div class="methodology" id="methodology">
+  <div class="methodology" id="section-method">
     <h2>How we did this</h2>
     <p>This dashboard is built to be fully auditable. Every number on this page can be reproduced by replaying the queries below against the NYPD's public datasets.</p>
 
@@ -1193,6 +1380,86 @@ Chart.defaults.plugins.tooltip.cornerRadius = 2;
 const fmt = n => n == null ? '—' : n.toLocaleString('en-US');
 const pct = (later, earlier) => earlier ? ((later - earlier) / earlier) * 100 : null;
 const pctStr = v => v == null ? '—' : (v > 0 ? '+' : '') + v.toFixed(1) + '%';
+
+// ---- URL state ----
+// Permalinkable views: every visible toggle reads its initial value from the
+// URL query string and writes back on user interaction. This means a link like
+//   /?smooth=rolling12&baseline=2010&boro=rate&map=delta_pct&type=felony#subway
+// restores the exact view the sender was looking at.
+const URLState = (() => {
+  const ALLOWED = {
+    smooth: new Set(['monthly', 'rolling12']),
+    baseline: null, // numeric year, validated against slider min/max at apply time
+    boro: new Set(['total', 'rate']),
+    map: new Set(['rate', 'volume', 'delta_pct', 'delta_abs']),
+    type: new Set(['combined', 'felony', 'misdem'])
+  };
+  function read() {
+    const p = new URLSearchParams(location.search);
+    const out = {};
+    for (const k of Object.keys(ALLOWED)) {
+      const v = p.get(k);
+      if (v == null) continue;
+      const valid = ALLOWED[k];
+      if (valid && !valid.has(v)) continue;
+      out[k] = v;
+    }
+    return out;
+  }
+  function write(patch) {
+    const p = new URLSearchParams(location.search);
+    for (const [k, v] of Object.entries(patch)) {
+      if (v == null || v === '') p.delete(k);
+      else p.set(k, String(v));
+    }
+    const qs = p.toString();
+    const url = location.pathname + (qs ? '?' + qs : '') + location.hash;
+    history.replaceState(null, '', url);
+  }
+  return { read, write };
+})();
+
+// ---- Section nav scrollspy ----
+// Highlights the nav pill matching whichever section is currently in view.
+// IntersectionObserver is a lightweight way to do this without a scroll
+// listener firing on every pixel.
+(() => {
+  if (!('IntersectionObserver' in window)) return;
+  const sections = document.querySelectorAll('[id^="section-"]');
+  const links = document.querySelectorAll('.section-nav a');
+  if (!sections.length || !links.length) return;
+  const linkById = {};
+  links.forEach(a => {
+    const id = a.getAttribute('href').replace('#', '');
+    linkById[id] = a;
+  });
+  // Pick the topmost intersecting section as "active".
+  let lastActive = null;
+  const setActive = (id) => {
+    if (id === lastActive) return;
+    if (lastActive && linkById[lastActive]) linkById[lastActive].classList.remove('active');
+    if (linkById[id]) linkById[id].classList.add('active');
+    lastActive = id;
+  };
+  const visible = new Set();
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) visible.add(e.target.id);
+      else visible.delete(e.target.id);
+    });
+    // Of the currently visible sections, pick the one whose top is highest on screen.
+    let chosen = null;
+    let chosenTop = Infinity;
+    visible.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const top = el.getBoundingClientRect().top;
+      if (top < chosenTop) { chosen = id; chosenTop = top; }
+    });
+    if (chosen) setActive(chosen);
+  }, { rootMargin: '-80px 0px -60% 0px', threshold: 0 });
+  sections.forEach(s => observer.observe(s));
+})();
 
 async function soql(endpoint, query) {
   const url = endpoint + '?$query=' + encodeURIComponent(query);
@@ -1509,6 +1776,16 @@ let _monthlyMode = 'monthly'; // 'monthly' | 'rolling12'
 
 function renderMonthly(data) {
   _monthlyData = data;
+  // Restore from URL if present
+  const fromUrl = URLState.read().smooth;
+  if (fromUrl && fromUrl !== _monthlyMode) {
+    _monthlyMode = fromUrl;
+    document.querySelectorAll('.chart-toggle-btn[data-smooth]').forEach(b => {
+      const active = b.dataset.smooth === _monthlyMode;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
   drawMonthly();
   // Wire up toggle (idempotent)
   document.querySelectorAll('.chart-toggle-btn[data-smooth]').forEach(btn => {
@@ -1521,6 +1798,8 @@ function renderMonthly(data) {
         b.classList.toggle('active', active);
         b.setAttribute('aria-pressed', active ? 'true' : 'false');
       });
+      // Default mode doesn't pollute the URL.
+      URLState.write({ smooth: mode === 'monthly' ? null : mode });
       drawMonthly();
     };
   });
@@ -1638,12 +1917,22 @@ function renderBaseline(annual, latestYear) {
   const maxYear = Math.max(1993, latestYear - 1);
   slider.min = '1993';
   slider.max = String(maxYear);
-  slider.value = '2019'; // Pleasant default — pre-pandemic baseline
+  // Default: 2019 (pre-pandemic). URL can override.
+  let initial = 2019;
+  const fromUrl = Number(URLState.read().baseline);
+  if (Number.isFinite(fromUrl) && fromUrl >= 1993 && fromUrl <= maxYear) {
+    initial = fromUrl;
+  }
+  slider.value = String(initial);
   document.getElementById('baselineSliderMaxLabel').textContent = String(maxYear);
 
-  const redraw = () => drawBaseline(Number(slider.value));
+  const redraw = () => {
+    const y = Number(slider.value);
+    drawBaseline(y);
+    URLState.write({ baseline: y === 2019 ? null : y });
+  };
   slider.oninput = redraw;
-  redraw();
+  drawBaseline(initial);
 }
 
 function drawBaseline(baselineYear) {
@@ -1862,6 +2151,16 @@ async function renderBorough(boroRows, latestYear) {
   }
 
   _boroughData = { felony, misdem, felonyPri, misdemPri, rangeLabel, priorRangeLabel };
+  // Restore from URL if present
+  const fromUrl = URLState.read().boro;
+  if (fromUrl && fromUrl !== _boroughMode) {
+    _boroughMode = fromUrl;
+    document.querySelectorAll('.chart-toggle-btn[data-boro]').forEach(b => {
+      const active = b.dataset.boro === _boroughMode;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
   drawBorough();
 
   document.querySelectorAll('.chart-toggle-btn[data-boro]').forEach(btn => {
@@ -1874,6 +2173,7 @@ async function renderBorough(boroRows, latestYear) {
         b.classList.toggle('active', active);
         b.setAttribute('aria-pressed', active ? 'true' : 'false');
       });
+      URLState.write({ boro: mode === 'total' ? null : mode });
       drawBorough();
     };
   });
@@ -2462,6 +2762,16 @@ async function initMap() {
   const tempLayer = L.geoJSON(geo);
   MAP_STATE.map.fitBounds(tempLayer.getBounds(), { padding: [8, 8] });
 
+  // Restore from URL if present
+  const urlParams = URLState.read();
+  if (urlParams.map) MAP_STATE.metric = urlParams.map;
+  if (urlParams.type) {
+    MAP_STATE.type = urlParams.type;
+    document.querySelectorAll('.map-type-btn').forEach(b =>
+      b.classList.toggle('active', b.dataset.type === MAP_STATE.type)
+    );
+  }
+
   if (dataPending) {
     MAP_STATE.layer = L.geoJSON(geo, {
       style: () => ({ fillColor: '#2a2a2f', weight: 0.7, color: '#ffffff', fillOpacity: 0.5 })
@@ -2469,12 +2779,13 @@ async function initMap() {
     document.getElementById('mapTitle').textContent =
       `Rate per 100,000 residents, by precinct — ${MAP_STATE.rangeLabel}`;
   } else {
-    drawChoropleth('rate');
+    drawChoropleth(MAP_STATE.metric);
   }
 
   document.querySelectorAll('.map-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       MAP_STATE.metric = btn.dataset.metric;
+      URLState.write({ map: MAP_STATE.metric === 'rate' ? null : MAP_STATE.metric });
       drawChoropleth(MAP_STATE.metric);
     });
   });
@@ -2482,6 +2793,7 @@ async function initMap() {
     btn.addEventListener('click', () => {
       MAP_STATE.type = btn.dataset.type;
       document.querySelectorAll('.map-type-btn').forEach(b => b.classList.toggle('active', b.dataset.type === MAP_STATE.type));
+      URLState.write({ type: MAP_STATE.type === 'combined' ? null : MAP_STATE.type });
       drawChoropleth(MAP_STATE.metric);
     });
   });
@@ -2700,6 +3012,309 @@ function renderCaseList() {
     : `${filtered.length} of ${cases.length} shown`;
 }
 
+// ---- Hour x day heatmap + venue type ----
+//
+// Both sections need data that NYC Open Data only ships at complaint level
+// (which is on a quarterly publishing lag). We pick the most recent year that
+// has substantially complete coverage — defined as >= 30,000 records of any
+// assault. As soon as the next quarterly drop lands, this auto-advances to
+// the new year without any code change.
+
+const ASSAULT_OFFENSES = [
+  "FELONY ASSAULT",
+  "ASSAULT 3 & RELATED OFFENSES"
+];
+
+async function detectLatestCoverageYear() {
+  // Walk backward from "this year" until we find a year with >= 30k records.
+  // Cap at 4 years lookback so we never go below 2022.
+  const thisYear = new Date().getFullYear();
+  for (let y = thisYear; y >= thisYear - 4; y--) {
+    const q = `SELECT count(*) AS n
+               WHERE ofns_desc IN('FELONY ASSAULT','ASSAULT 3 & RELATED OFFENSES')
+                 AND date_extract_y(cmplnt_fr_dt) = ${y}`;
+    let n = 0;
+    try {
+      const [hist, ytd] = await Promise.all([
+        soql(ENDPOINTS.historic, q).catch(() => []),
+        soql(ENDPOINTS.ytd, q).catch(() => []),
+      ]);
+      n = Math.max(
+        Number(hist[0]?.n) || 0,
+        Number(ytd[0]?.n) || 0,
+      );
+    } catch (e) {
+      n = 0;
+    }
+    if (n >= 30000) return y;
+  }
+  // Fallback: assume two years back
+  return thisYear - 2;
+}
+
+async function loadHourDay(year) {
+  // SoQL grouping: cmplnt_fr_dt is a full timestamp at midnight; the actual
+  // time-of-incident lives in cmplnt_fr_tm as "HH:MM:SS". We pull the leading
+  // two characters of cmplnt_fr_tm as the hour.
+  const q = (lawCat) => `
+    SELECT
+      substring(cmplnt_fr_tm, 1, 2) AS hour,
+      date_extract_dow(cmplnt_fr_dt) AS dow,
+      count(*) AS n
+    WHERE date_extract_y(cmplnt_fr_dt) = ${year}
+      AND ofns_desc IN('FELONY ASSAULT','ASSAULT 3 & RELATED OFFENSES')
+      AND cmplnt_fr_tm IS NOT NULL
+      ${lawCat ? `AND law_cat_cd = '${lawCat}'` : ''}
+    GROUP BY hour, dow
+  `.trim();
+  const queries = [
+    { kind: 'combined', filter: '' },
+    { kind: 'felony', filter: 'FELONY' },
+    { kind: 'misdem', filter: 'MISDEMEANOR' },
+  ];
+  const out = { combined: {}, felony: {}, misdem: {} };
+  for (const { kind, filter } of queries) {
+    const sql = q(filter);
+    let rows = [];
+    try {
+      const [hist, ytd] = await Promise.all([
+        soql(ENDPOINTS.historic, sql).catch(() => []),
+        soql(ENDPOINTS.ytd, sql).catch(() => []),
+      ]);
+      // Both feeds may return rows for some boundary cases; take the larger
+      // count per (hour,dow) pair to avoid double-counting if there's overlap.
+      const seen = {};
+      [...hist, ...ytd].forEach(r => {
+        const h = Number(r.hour);
+        const d = Number(r.dow);
+        const n = Number(r.n);
+        if (!Number.isFinite(h) || !Number.isFinite(d)) return;
+        const k = `${d}-${h}`;
+        seen[k] = Math.max(seen[k] || 0, n);
+      });
+      out[kind] = seen;
+      rows = Object.entries(seen);
+    } catch (e) {
+      console.warn('hour/day load failed for', kind, e);
+    }
+  }
+  return out;
+}
+
+async function loadVenue(year) {
+  const q = (lawCat) => `
+    SELECT prem_typ_desc, loc_of_occur_desc, count(*) AS n
+    WHERE date_extract_y(cmplnt_fr_dt) = ${year}
+      AND ofns_desc IN('FELONY ASSAULT','ASSAULT 3 & RELATED OFFENSES')
+      ${lawCat ? `AND law_cat_cd = '${lawCat}'` : ''}
+    GROUP BY prem_typ_desc, loc_of_occur_desc
+    LIMIT 5000
+  `.trim();
+  const out = { combined: {prem:{}, loc:{}}, felony: {prem:{}, loc:{}}, misdem: {prem:{}, loc:{}} };
+  const queries = [
+    { kind: 'combined', filter: '' },
+    { kind: 'felony', filter: 'FELONY' },
+    { kind: 'misdem', filter: 'MISDEMEANOR' },
+  ];
+  for (const { kind, filter } of queries) {
+    const sql = q(filter);
+    try {
+      const [hist, ytd] = await Promise.all([
+        soql(ENDPOINTS.historic, sql).catch(() => []),
+        soql(ENDPOINTS.ytd, sql).catch(() => []),
+      ]);
+      const rows = hist.length >= ytd.length ? hist : ytd;
+      const prem = {}, loc = {};
+      rows.forEach(r => {
+        const p = (r.prem_typ_desc || 'Unknown').toString();
+        const l = (r.loc_of_occur_desc || 'Unknown').toString();
+        const n = Number(r.n) || 0;
+        prem[p] = (prem[p] || 0) + n;
+        loc[l] = (loc[l] || 0) + n;
+      });
+      out[kind] = { prem, loc };
+    } catch (e) {
+      console.warn('venue load failed for', kind, e);
+    }
+  }
+  return out;
+}
+
+let _whenData = null;
+let _whenYear = null;
+let _whenMode = 'combined';
+let _venueData = null;
+let _venueChart = null;
+let _indoorOutdoorChart = null;
+let _venueMode = 'combined';
+
+const DOW_LABELS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+function renderWhenHeatmap() {
+  if (!_whenData) return;
+  const counts = _whenData[_whenMode] || {};
+  const container = document.getElementById('whenHeatmap');
+  if (!container) return;
+  // Compute max for color scaling
+  let max = 0;
+  for (const v of Object.values(counts)) if (v > max) max = v;
+  if (max === 0) max = 1;
+  // Build grid: 7 rows (Sun..Sat) x 24 cols (0..23), plus row labels
+  const parts = [];
+  for (let d = 0; d < 7; d++) {
+    parts.push(`<div class="wh-row-label">${DOW_LABELS[d]}</div>`);
+    for (let h = 0; h < 24; h++) {
+      const n = counts[`${d}-${h}`] || 0;
+      const t = n / max;
+      // Single-hue ramp from very pale to indigo (matches palette)
+      const color = `rgba(74, 85, 181, ${0.06 + 0.94 * t})`;
+      const tooltip = `${DOW_LABELS[d]} ${String(h).padStart(2, '0')}:00 — ${n.toLocaleString()} ${_whenMode === 'felony' ? 'felony' : _whenMode === 'misdem' ? 'misdemeanor' : ''} assault complaint${n === 1 ? '' : 's'}`;
+      parts.push(`<div class="wh-cell" style="background:${color}" title="${tooltip}" aria-label="${tooltip}"></div>`);
+    }
+  }
+  // Footer row with hour labels
+  parts.push(`<div class="wh-hour-row"><span></span>${
+    Array.from({length: 24}, (_, i) => `<span>${i % 4 === 0 ? i : ''}</span>`).join('')
+  }</div>`);
+  container.innerHTML = parts.join('');
+  // Update title for the year + offense
+  document.getElementById('whenTitle').textContent =
+    `Hourly pattern of ${_whenMode === 'felony' ? 'felony assault' : _whenMode === 'misdem' ? 'misdemeanor assault' : 'assault'} complaints, ${_whenYear}`;
+  document.getElementById('whenTag').textContent =
+    `Hour of day · day of week · ${_whenYear}`;
+}
+
+function topVenues(prem, n) {
+  // Drop generic noise categories that swamp the chart
+  const NOISE = new Set(['', 'OTHER', 'OTHERS', '(null)', 'null']);
+  const entries = Object.entries(prem)
+    .filter(([k]) => k && !NOISE.has(k.trim().toUpperCase()))
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, n);
+  return entries;
+}
+
+function renderVenueCharts() {
+  if (!_venueData) return;
+  const block = _venueData[_venueMode] || { prem: {}, loc: {} };
+  const top = topVenues(block.prem, 12);
+  const labels = top.map(([k]) =>
+    k.length > 36 ? k.slice(0, 33) + '…' : k
+  );
+  const values = top.map(([, v]) => v);
+
+  if (_venueChart) _venueChart.destroy();
+  _venueChart = new Chart(document.getElementById('venueChart'), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Complaints',
+        data: values,
+        backgroundColor: COLORS.indigo,
+        borderWidth: 0,
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ctx.parsed.x.toLocaleString() + ' complaints' } }
+      },
+      scales: {
+        x: { beginAtZero: true, grid: { color: COLORS.cloud, drawBorder: false }, ticks: { color: COLORS.charcoal, callback: v => v.toLocaleString() } },
+        y: { grid: { display: false }, ticks: { color: COLORS.black, font: { weight: 700, size: 11 } } }
+      }
+    }
+  });
+
+  // Indoor/outdoor pie. Categories: INSIDE, OUTSIDE, FRONT OF, OPPOSITE OF, REAR OF, plus "Unknown"
+  const loc = block.loc || {};
+  const indoor = (loc['INSIDE'] || 0);
+  const outdoor = (loc['OUTSIDE'] || 0) + (loc['FRONT OF'] || 0) + (loc['OPPOSITE OF'] || 0) + (loc['REAR OF'] || 0);
+  const unknown = Object.entries(loc).reduce((sum, [k, v]) =>
+    !['INSIDE', 'OUTSIDE', 'FRONT OF', 'OPPOSITE OF', 'REAR OF'].includes(k) ? sum + (Number(v) || 0) : sum,
+    0);
+
+  if (_indoorOutdoorChart) _indoorOutdoorChart.destroy();
+  _indoorOutdoorChart = new Chart(document.getElementById('indoorOutdoorChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Indoor', 'Outdoor', 'Unknown'],
+      datasets: [{
+        data: [indoor, outdoor, unknown],
+        backgroundColor: [COLORS.indigo, COLORS.orange, COLORS.cloud],
+        borderColor: '#fff',
+        borderWidth: 2,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', align: 'start' },
+        tooltip: {
+          callbacks: {
+            label: ctx => {
+              const v = ctx.parsed;
+              const total = indoor + outdoor + unknown;
+              const pctVal = total ? (v / total * 100) : 0;
+              return `${ctx.label}: ${v.toLocaleString()} (${pctVal.toFixed(1)}%)`;
+            }
+          }
+        }
+      }
+    }
+  });
+
+  document.getElementById('venueTitle').textContent =
+    `Top venues for ${_venueMode === 'felony' ? 'felony assault' : _venueMode === 'misdem' ? 'misdemeanor assault' : 'assault'} complaints, ${_whenYear}`;
+}
+
+async function renderWhenAndVenue() {
+  // Determine the freshest year we can use (auto-advances when 2026 lands).
+  const year = await detectLatestCoverageYear();
+  _whenYear = year;
+  // Fetch in parallel
+  const [whenData, venueData] = await Promise.all([
+    loadHourDay(year),
+    loadVenue(year),
+  ]);
+  _whenData = whenData;
+  _venueData = venueData;
+  renderWhenHeatmap();
+  renderVenueCharts();
+  // Wire toggles
+  document.querySelectorAll('.chart-toggle-btn[data-when]').forEach(btn => {
+    btn.onclick = () => {
+      const mode = btn.dataset.when;
+      if (mode === _whenMode) return;
+      _whenMode = mode;
+      document.querySelectorAll('.chart-toggle-btn[data-when]').forEach(b => {
+        const a = b.dataset.when === mode;
+        b.classList.toggle('active', a);
+        b.setAttribute('aria-pressed', a ? 'true' : 'false');
+      });
+      renderWhenHeatmap();
+    };
+  });
+  document.querySelectorAll('.chart-toggle-btn[data-venue]').forEach(btn => {
+    btn.onclick = () => {
+      const mode = btn.dataset.venue;
+      if (mode === _venueMode) return;
+      _venueMode = mode;
+      document.querySelectorAll('.chart-toggle-btn[data-venue]').forEach(b => {
+        const a = b.dataset.venue === mode;
+        b.classList.toggle('active', a);
+        b.setAttribute('aria-pressed', a ? 'true' : 'false');
+      });
+      renderVenueCharts();
+    };
+  });
+}
+
 async function loadCaseLog() {
   const metaEl = document.getElementById('caseLogMeta');
   try {
@@ -2751,6 +3366,10 @@ async function main() {
 
     await initMap();
     await renderSubway();
+    // Heatmap + venue type — kicked off in parallel because both need slow
+    // SoQL queries; we don't await them so the rest of the page is responsive
+    // while they load. Each section shows a brief blank state until populated.
+    renderWhenAndVenue().catch(e => console.warn('when/venue failed', e));
     await loadCaseLog();
   } catch (e) {
     console.error(e);
