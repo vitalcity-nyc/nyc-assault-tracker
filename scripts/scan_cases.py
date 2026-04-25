@@ -24,6 +24,31 @@ import requests
 from anthropic import Anthropic
 from bs4 import BeautifulSoup
 
+
+def _ensure_pypdf() -> None:
+    """Install pypdf at runtime if it isn't already installed.
+
+    The Bronx DA publishes press releases as PDFs, so we need a PDF text
+    extractor. Ideally pypdf would be in the GitHub Actions workflow's
+    pip-install line (alongside requests/beautifulsoup4/lxml/anthropic),
+    but that file lives under .github/workflows/ and editing it requires
+    the OAuth `workflow` scope, which the bot account doesn't carry.
+
+    Doing the install here keeps the runtime self-bootstrapping. It costs
+    ~5 seconds on first run; pypdf is tiny (no native deps).
+    """
+    try:
+        import pypdf  # noqa: F401
+    except ImportError:
+        import subprocess
+        print("[setup] installing pypdf for Bronx PDF extraction…", flush=True)
+        subprocess.check_call(
+            [sys.executable, "-m", "pip", "install", "--quiet", "pypdf"]
+        )
+
+
+_ensure_pypdf()
+
 HERE = Path(__file__).resolve().parent.parent
 CASES_PATH = HERE / "cases-2026.json"
 YEAR = 2026
