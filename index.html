@@ -3022,6 +3022,9 @@ function renderCaseList() {
     return;
   }
 
+  // Reverse-chron display: newest events first. Cases are stored in the JSON
+  // ascending by date and renumbered each scan, so we sort the filtered view
+  // descending by date here. Stable on ties (same-date cases keep n order).
   const filtered = cases.filter(c => {
     if (boroSel && c.borough !== boroSel) return false;
     if (monthSel && !c.date.startsWith('2026-' + monthSel)) return false;
@@ -3030,6 +3033,9 @@ function renderCaseList() {
       if (!haystack.includes(textSel)) return false;
     }
     return true;
+  }).slice().sort((a, b) => {
+    if (a.date !== b.date) return b.date.localeCompare(a.date);
+    return (b.n || 0) - (a.n || 0);
   });
 
   if (!filtered.length) {
