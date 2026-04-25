@@ -463,25 +463,35 @@ footer {
 }
 .baseline-headline strong { font-weight: 700; }
 
-/* Sticky section nav: collapses to a horizontal scroll on mobile */
+/* Section nav — fixed full-width bar across the top of the viewport so it's
+   permanently visible while scrolling. The inner .section-nav-inner element
+   constrains the links to the same 1200px content width as the rest of the
+   page. */
+body { padding-top: 50px; }
 .section-nav {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 50;
+  left: 0;
+  right: 0;
+  z-index: 100;
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: saturate(140%) blur(6px);
   -webkit-backdrop-filter: saturate(140%) blur(6px);
   border-bottom: 1px solid var(--vc-cloud);
-  margin: 0 -16px 18px;
-  padding: 8px 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+.section-nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8px 24px;
   display: flex;
   gap: 6px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
 }
-.section-nav::-webkit-scrollbar { height: 4px; }
-.section-nav::-webkit-scrollbar-thumb { background: var(--vc-cloud); }
+.section-nav-inner::-webkit-scrollbar { height: 4px; }
+.section-nav-inner::-webkit-scrollbar-thumb { background: var(--vc-cloud); }
 .section-nav a {
   flex: 0 0 auto;
   font-family: var(--font-primary);
@@ -498,8 +508,8 @@ footer {
 .section-nav a:hover, .section-nav a:focus { background: var(--vc-cloud); color: var(--vc-black); border-color: var(--vc-cloud); }
 .section-nav a.active { background: var(--vc-black); color: var(--vc-white); }
 
-/* When the page anchor scrolls into view, leave room for the sticky nav. */
-[id^="section-"] { scroll-margin-top: 68px; }
+/* When a page anchor scrolls into view, leave room under the fixed nav. */
+[id^="section-"] { scroll-margin-top: 64px; }
 
 /* When-heatmap (hour x day) */
 .when-heatmap {
@@ -870,11 +880,12 @@ table.data th.num { text-align: right; }
   /* Map controls: tighter padding, smaller font on phones */
   .map-btn, .map-type-btn { font-size: 10px; padding: 6px 9px; letter-spacing: 0; }
   .chart-toggle-btn { font-size: 10px; padding: 5px 9px; }
-  /* Section nav: pull margin in on small screens so the bar reaches the edges */
-  .section-nav { margin: 0 -16px 14px; padding: 7px 12px; gap: 4px; }
+  /* Section nav: tighter on small screens; nav itself is full-width fixed */
+  .section-nav-inner { padding: 7px 12px; gap: 4px; }
   .section-nav a { font-size: 11px; padding: 5px 8px; }
+  body { padding-top: 44px; }
   /* Methodology + sticky offset slightly tighter */
-  [id^="section-"] { scroll-margin-top: 60px; }
+  [id^="section-"] { scroll-margin-top: 56px; }
   /* h1 and headers a notch smaller */
   .title { font-size: 30px; line-height: 1.1; }
   .baseline-slider-wrap { padding: 12px 14px; }
@@ -885,18 +896,10 @@ table.data th.num { text-align: right; }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <!-- Header -->
-  <p class="kicker">NYC Assault Tracker · Live data</p>
-  <h1 class="title">Felony and misdemeanor assault in New York City, continuously updated</h1>
-  <p class="dek">Every felony and misdemeanor assault complaint filed with the NYPD, pulled directly from the city's official open data feed. Trendlines update each time this page loads. Full methodology at the bottom.</p>
-  <p class="stamp" id="dataStamp"><span class="dot"></span>Fetching latest data from NYC Open Data…</p>
-
-  <hr class="rule">
-
-  <!-- Sticky section nav -->
-  <nav class="section-nav" id="sectionNav" aria-label="Page sections">
+<!-- Fixed full-width section nav, lives outside .wrap so it spans the viewport -->
+<nav class="section-nav" id="sectionNav" aria-label="Page sections">
+  <div class="section-nav-inner">
     <a href="#section-trends">Trends</a>
     <a href="#section-baseline">Baselines</a>
     <a href="#section-where">Boroughs</a>
@@ -907,7 +910,18 @@ table.data th.num { text-align: right; }
     <a href="#section-annual">Annual</a>
     <a href="#section-cases">Cases</a>
     <a href="#section-method">Methodology</a>
-  </nav>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- Header -->
+  <p class="kicker">NYC Assault Tracker · Live data</p>
+  <h1 class="title">Felony and misdemeanor assault in New York City, continuously updated</h1>
+  <p class="dek">Every felony and misdemeanor assault complaint filed with the NYPD, pulled directly from the city's official open data feed. Trendlines update each time this page loads. Full methodology at the bottom.</p>
+  <p class="stamp" id="dataStamp"><span class="dot"></span>Fetching latest data from NYC Open Data…</p>
+
+  <hr class="rule">
 
   <!-- KPIs -->
   <div class="kpi-grid" id="kpiGrid">
