@@ -525,8 +525,42 @@ footer {
   border-radius: 2px;
   transition: outline 0.1s;
   cursor: default;
+  position: relative;
 }
 .when-heatmap .wh-cell:hover { outline: 2px solid var(--vc-black); }
+/* Subtle vertical dividers at 6am, noon, 6pm so the four periods are
+   visually obvious without dominating the data. */
+.when-heatmap .wh-cell.wh-divider { box-shadow: inset 2px 0 0 rgba(0,0,0,0.18); }
+
+/* Top strip: Night / Morning / Afternoon / Evening — full row spanning the
+   24 hour columns, broken into 4 6-hour bands. */
+.when-heatmap .wh-period-row {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 60px repeat(24, minmax(14px, 1fr));
+  gap: 2px;
+  margin-bottom: 4px;
+}
+.when-heatmap .wh-period {
+  font-family: var(--font-primary);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 10px;
+  color: var(--vc-charcoal);
+  text-align: center;
+  padding: 4px 0 2px;
+  background: var(--vc-cloud);
+  border-radius: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.when-heatmap .wh-period.night { background: #2a2a3a; color: #fff; }
+.when-heatmap .wh-period.morning { background: #fdf3d4; color: #8c6d0c; }
+.when-heatmap .wh-period.afternoon { background: #fff; color: var(--vc-charcoal); border: 1px solid var(--vc-cloud); padding-top: 3px; padding-bottom: 1px; }
+.when-heatmap .wh-period.evening { background: #4a55b5; color: #fff; }
+
 .when-heatmap .wh-hour-row {
   grid-column: 1 / -1;
   display: grid;
@@ -3159,8 +3193,32 @@ function renderWhenHeatmap() {
   let max = 0;
   for (const v of Object.values(counts)) if (v > max) max = v;
   if (max === 0) max = 1;
-  // Build grid: 7 rows (Sun..Sat) x 24 cols (0..23), plus row labels
-  const parts = [];
+  // Format an hour (0..23) in plain-English AM/PM. "Midnight" / "Noon" for
+  // the two boundary cases — those are the labels people look for first.
+  const fmtHour = (h, opts = {}) => {
+    if (h === 0) return opts.short ? '12am' : 'Midnight';
+    if (h === 12) return opts.short ? '12pm' : 'Noon';
+    const ampm = h < 12 ? 'am' : 'pm';
+    const h12 = h <= 12 ? h : h - 12;
+    return `${h12}${ampm}`;
+  };
+
+  // Top strip: four 6-hour periods so readers can find night / morning /
+  // afternoon / evening at a glance without counting cells.
+  const periodCell = (cls, label, span) =>
+    `<div class="wh-period ${cls}" style="grid-column: span ${span};">${label}</div>`;
+  const periodRow =
+    `<div class="wh-period-row">` +
+      `<div></div>` + // empty under the day-of-week label column
+      periodCell('night',     'Night · 12–6 am',      6) +
+      periodCell('morning',   'Morning · 6 am – Noon', 6) +
+      periodCell('afternoon', 'Afternoon · 12–6 pm',   6) +
+      periodCell('evening',   'Evening · 6 pm – 12 am', 6) +
+    `</div>`;
+
+  // Build grid: top period strip, 7 rows (Sun..Sat) x 24 cols (0..23), then
+  // hour labels along the bottom.
+  const parts = [periodRow];
   for (let d = 0; d < 7; d++) {
     parts.push(`<div class="wh-row-label">${DOW_LABELS[d]}</div>`);
     for (let h = 0; h < 24; h++) {
@@ -3168,13 +3226,18 @@ function renderWhenHeatmap() {
       const t = n / max;
       // Single-hue ramp from very pale to indigo (matches palette)
       const color = `rgba(74, 85, 181, ${0.06 + 0.94 * t})`;
-      const tooltip = `${DOW_LABELS[d]} ${String(h).padStart(2, '0')}:00 — ${n.toLocaleString()} ${_whenMode === 'felony' ? 'felony' : _whenMode === 'misdem' ? 'misdemeanor' : ''} assault complaint${n === 1 ? '' : 's'}`;
-      parts.push(`<div class="wh-cell" style="background:${color}" title="${tooltip}" aria-label="${tooltip}"></div>`);
+      const tooltip = `${DOW_LABELS[d]} ${fmtHour(h)} — ${n.toLocaleString()} ${_whenMode === 'felony' ? 'felony' : _whenMode === 'misdem' ? 'misdemeanor' : ''} assault complaint${n === 1 ? '' : 's'}`;
+      // Faint vertical divider at 6am, noon, 6pm so the four periods are
+      // visually distinct from the heatmap itself.
+      const divider = (h === 6 || h === 12 || h === 18) ? ' wh-divider' : '';
+      parts.push(`<div class="wh-cell${divider}" style="background:${color}" title="${tooltip}" aria-label="${tooltip}"></div>`);
     }
   }
-  // Footer row with hour labels
+  // Bottom row with AM/PM hour labels every 3 hours.
   parts.push(`<div class="wh-hour-row"><span></span>${
-    Array.from({length: 24}, (_, i) => `<span>${i % 4 === 0 ? i : ''}</span>`).join('')
+    Array.from({length: 24}, (_, i) =>
+      `<span>${i % 3 === 0 ? fmtHour(i, { short: true }) : ''}</span>`
+    ).join('')
   }</div>`);
   container.innerHTML = parts.join('');
   // Update title for the year + offense
