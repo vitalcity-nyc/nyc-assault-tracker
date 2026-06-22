@@ -1,6 +1,6 @@
 {
   "year": 2026,
-  "last_updated": "2026-06-15",
+  "last_updated": "2026-06-22",
   "note": "Compiled from NYC District Attorney press releases (Manhattan, Brooklyn, Bronx, Queens, Staten Island), federal prosecutor announcements, and reporting in NY Post, Daily News, NY Times, Gothamist, ABC7, NBC4, CBS2, Patch, and amNY. Entries are de-duplicated where a single defendant appears in multiple reports; the same defendant may appear on multiple dates when separate events (arrest, indictment, conviction) are reported. A small number of entries point to a DA press-release index rather than a case-specific permalink because the DA website's indexed permalinks could not be confirmed at compile time; readers can verify via the DA's dated press-release archive.",
   "cases": [
     {
@@ -637,6 +637,14 @@
     },
     {
       "n": 80,
+      "name": "Rhamell Burke",
+      "date": "2026-05-07",
+      "borough": "Manhattan",
+      "summary": "Rhamell Burke, 32, was indicted for murder in the second degree for allegedly shoving 76-year-old Ross Falzone down subway stairs at the 18th Street and 7th Avenue station in Chelsea on May 7, 2026. Falzone suffered a brain bleed and broken ribs and was pronounced dead at Bellevue Hospital the following morning.",
+      "source_url": "https://manhattanda.org/d-a-bragg-announces-murder-indictment-of-rhamell-burke-for-fatally-shoving-76-year-old-down-subway-stairs/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=d-a-bragg-announces-murder-indictment-of-rhamell-burke-for-fatally-shoving-76-year-old-down-subway-stairs"
+    },
+    {
+      "n": 81,
       "name": "Carlos Rivera",
       "date": "2026-05-11",
       "borough": "Bronx",
@@ -644,7 +652,7 @@
       "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/41-2026-Carlos-Rivera-sentenced-attempted-murder.pdf"
     },
     {
-      "n": 81,
+      "n": 82,
       "name": "Tyquan Holmes, Kristian Blackstock, Christopher Smart, Isef Richards, Christopher Moore, and 10 others",
       "date": "2026-05-11",
       "borough": "Brooklyn",
@@ -652,7 +660,7 @@
       "source_url": "https://www.brooklynda.org/2026/05/11/fifteen-alleged-members-of-coney-island-based-gangs-charged-with-numerous-shootings-across-brooklyn/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=fifteen-alleged-members-of-coney-island-based-gangs-charged-with-numerous-shootings-across-brooklyn"
     },
     {
-      "n": 82,
+      "n": 83,
       "name": "Jermaine Longmire",
       "date": "2026-05-13",
       "borough": "Manhattan",
@@ -660,7 +668,7 @@
       "source_url": "https://manhattanda.org/d-a-bragg-announces-sentencing-in-central-park-attempted-rape/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=d-a-bragg-announces-sentencing-in-central-park-attempted-rape"
     },
     {
-      "n": 83,
+      "n": 84,
       "name": "Harvey Weinstein",
       "date": "2026-05-15",
       "borough": "Manhattan",
@@ -668,7 +676,7 @@
       "source_url": "https://manhattanda.org/statement-from-d-a-bragg-on-the-harvey-weinstein-mistrial/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=statement-from-d-a-bragg-on-the-harvey-weinstein-mistrial"
     },
     {
-      "n": 84,
+      "n": 85,
       "name": "Agustin Diaz",
       "date": "2026-05-19",
       "borough": "Manhattan",
@@ -676,7 +684,7 @@
       "source_url": "https://manhattanda.org/d-a-bragg-agustin-diaz-sentenced-to-15-years-in-prison-for-series-of-sexual-assaults/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=d-a-bragg-agustin-diaz-sentenced-to-15-years-in-prison-for-series-of-sexual-assaults"
     },
     {
-      "n": 85,
+      "n": 86,
       "name": "Jose Ramos",
       "date": "2026-05-19",
       "borough": "Bronx",
@@ -684,7 +692,7 @@
       "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/43-2026-jose-ramos-indicted-in-rape-of-12-year-old-girl.pdf"
     },
     {
-      "n": 86,
+      "n": 87,
       "name": "Erin Merdy",
       "date": "2026-05-20",
       "borough": "Brooklyn",
@@ -692,7 +700,7 @@
       "source_url": "https://www.brooklynda.org/2026/05/20/brooklyn-mother-sentenced-to-20-years-to-life-in-prison-for-killing-her-three-children/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=brooklyn-mother-sentenced-to-20-years-to-life-in-prison-for-killing-her-three-children"
     },
     {
-      "n": 87,
+      "n": 88,
       "name": "Kevin Gavin",
       "date": "2026-05-20",
       "borough": "Brooklyn",
@@ -700,7 +708,7 @@
       "source_url": "https://www.brooklynda.org/2026/05/20/brooklyn-serial-killer-sentenced-to-30-years-to-life-in-prison-for-murdering-three-elderly-brownsville-women/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=brooklyn-serial-killer-sentenced-to-30-years-to-life-in-prison-for-murdering-three-elderly-brownsville-women"
     },
     {
-      "n": 88,
+      "n": 89,
       "name": "Jason Sargeant",
       "date": "2026-05-21",
       "borough": "Manhattan",
@@ -708,7 +716,15 @@
       "source_url": "https://manhattanda.org/statement-from-d-a-bragg-on-the-sentencing-of-jason-sargeant/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=statement-from-d-a-bragg-on-the-sentencing-of-jason-sargeant"
     },
     {
-      "n": 89,
+      "n": 90,
+      "name": "Dawood Faisal",
+      "date": "2026-05-25",
+      "borough": "Queens",
+      "summary": "A 22-year-old driver was indicted on manslaughter and assault charges after speeding at more than 75 mph on Francis Lewis Boulevard, running red lights, and striking multiple vehicles in a three-car collision that killed a 71-year-old pedestrian and injured her husband. The defendant fled the scene on foot before being detained by bystanders.",
+      "source_url": "https://queensda.org/speeding-driver-indicted-on-manslaughter-and-assault-charges-for-multi-car-collision-that-killed-woman-on-francis-lewis-boulevard/"
+    },
+    {
+      "n": 91,
       "name": "Harvey Marcelin",
       "date": "2026-06-10",
       "borough": "Brooklyn",
@@ -716,7 +732,7 @@
       "source_url": "https://www.brooklynda.org/2026/06/10/elder-parolee-sentenced-to-life-in-prison-for-murdering-and-dismembering-brooklyn-woman/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=elder-parolee-sentenced-to-life-in-prison-for-murdering-and-dismembering-brooklyn-woman"
     },
     {
-      "n": 90,
+      "n": 92,
       "name": "Michael Robinson",
       "date": "2026-06-10",
       "borough": "Queens",
@@ -724,7 +740,7 @@
       "source_url": "https://queensda.org/queens-man-convicted-for-a-second-time-in-1993-murder-of-pregnant-estranged-wife/"
     },
     {
-      "n": 91,
+      "n": 93,
       "name": "15-year-old defendant (name withheld)",
       "date": "2026-06-11",
       "borough": "Queens",
@@ -732,13 +748,45 @@
       "source_url": "https://queensda.org/teenager-charged-with-attempted-murder-for-shooting-at-nypd-officers-in-unmarked-police-car/"
     },
     {
-      "n": 92,
+      "n": 94,
+      "name": "Jonathan Baez",
+      "date": "2026-06-11",
+      "borough": "Bronx",
+      "summary": "NYPD Officer Jonathan Baez was indicted on charges of attempted murder, assault, and kidnapping for an off-duty shooting in Kingsbridge in March 2026. Baez allegedly held a man at gunpoint and fired two shots into a vehicle, striking a 30-year-old passenger in the head; the victim remains hospitalized on a ventilator. The shooting occurred during an unauthorized personal investigation into the theft of Baez's vehicle.",
+      "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/55-2026-NYPD-Officer-Jonathan-Baez-indicted-for-attempted-murder.pdf"
+    },
+    {
+      "n": 95,
       "name": "William Freeman",
       "date": "2026-06-11",
       "borough": "Brooklyn",
       "summary": "William Freeman, 30, was sentenced to 18 years in prison for the October 2020 shooting death of Ethan Williams, a 20-year-old Indiana University student visiting New York City. Freeman opened fire on a group of people sitting on a stoop in Bushwick, striking Williams in the chest in what authorities said was a case of mistaken identity.",
       "source_url": "https://www.brooklynda.org/2026/06/11/brooklyn-man-sentenced-to-18-years-in-prison-for-shooting-death-of-ethan-williams/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=brooklyn-man-sentenced-to-18-years-in-prison-for-shooting-death-of-ethan-williams"
+    },
+    {
+      "n": 96,
+      "name": "Edwin Rios",
+      "date": "2026-06-16",
+      "borough": "Bronx",
+      "summary": "Edwin Rios, 40, was sentenced to 15 years in prison for stabbing a 75-year-old woman multiple times with a knife in an apartment building elevator in the Bronx on March 31, 2024. The victim suffered a punctured lung, facial and head lacerations, and permanent nerve damage. Rios pleaded guilty to attempted murder in the second degree.",
+      "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/57-2026-Edwin-Rios-Sentenced-for-Attempted-Murder.pdf"
+    },
+    {
+      "n": 97,
+      "name": "Shaheene Ahmad",
+      "date": "2026-06-16",
+      "borough": "Bronx",
+      "summary": "Shaheene Ahmad, 38, was sentenced to 25 years to life for the murder of his ex-partner, Zariuah Hayes, 23. Ahmad stabbed Hayes 17 times, including 16 wounds to her face and neck, in front of their two young sons, ages 2 and 5, at the end of a birthday celebration on September 14, 2023.",
+      "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/59-2026-shaheene-ahmad-sentenced-for-murder.pdf"
+    },
+    {
+      "n": 98,
+      "name": "Robert White, Sunshyne Davis",
+      "date": "2026-06-17",
+      "borough": "Brooklyn",
+      "summary": "A mother and her boyfriend were indicted on murder and manslaughter charges in the death of her three-year-old son, who died from injuries including blunt force trauma and severe neglect. The child was allegedly beaten repeatedly and starved while the defendants lived in a car in East Flatbush.",
+      "source_url": "https://www.brooklynda.org/2026/06/17/brooklyn-mother-and-boyfriend-indicted-for-murder-of-three-year-old-boy-who-was-beaten-and-starved/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=brooklyn-mother-and-boyfriend-indicted-for-murder-of-three-year-old-boy-who-was-beaten-and-starved"
     }
   ],
-  "last_scan_date": "2026-06-15"
+  "last_scan_date": "2026-06-22"
 }
