@@ -1,6 +1,6 @@
 {
   "year": 2026,
-  "last_updated": "2026-06-22",
+  "last_updated": "2026-06-29",
   "note": "Compiled from NYC District Attorney press releases (Manhattan, Brooklyn, Bronx, Queens, Staten Island), federal prosecutor announcements, and reporting in NY Post, Daily News, NY Times, Gothamist, ABC7, NBC4, CBS2, Patch, and amNY. Entries are de-duplicated where a single defendant appears in multiple reports; the same defendant may appear on multiple dates when separate events (arrest, indictment, conviction) are reported. A small number of entries point to a DA press-release index rather than a case-specific permalink because the DA website's indexed permalinks could not be confirmed at compile time; readers can verify via the DA's dated press-release archive.",
   "cases": [
     {
@@ -786,7 +786,39 @@
       "borough": "Brooklyn",
       "summary": "A mother and her boyfriend were indicted on murder and manslaughter charges in the death of her three-year-old son, who died from injuries including blunt force trauma and severe neglect. The child was allegedly beaten repeatedly and starved while the defendants lived in a car in East Flatbush.",
       "source_url": "https://www.brooklynda.org/2026/06/17/brooklyn-mother-and-boyfriend-indicted-for-murder-of-three-year-old-boy-who-was-beaten-and-starved/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=brooklyn-mother-and-boyfriend-indicted-for-murder-of-three-year-old-boy-who-was-beaten-and-starved"
+    },
+    {
+      "n": 99,
+      "name": "Kareem Reid",
+      "date": "2026-06-18",
+      "borough": "Bronx",
+      "summary": "Kareem Reid, a 32-year-old Manhattan man, was sentenced to 23 years in prison for first-degree manslaughter in the fatal shooting of Tyrone Tabanah, 34, a Bronx father of four, during a dispute at a dice game in August 2020. Reid fired multiple shots after Tabanah accused him of cheating, severing Tabanah's femoral artery.",
+      "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/61-2026-Kareem-Reid-sentenced-for-Manslaughter.pdf"
+    },
+    {
+      "n": 100,
+      "name": "Eric McMichael",
+      "date": "2026-06-24",
+      "borough": "Brooklyn",
+      "summary": "Eric McMichael, 28, was sentenced to 18 years in prison after pleading guilty to two counts of first-degree rape for attacking a 12-year-old stranger whom he followed into an apartment building lobby in East Williamsburg on November 6, 2025. He dragged the child into a stairwell and raped her before fleeing; he was apprehended the next day.",
+      "source_url": "https://www.brooklynda.org/2026/06/24/brooklyn-man-sentenced-to-18-years-in-prison-for-rape-of-12-year-old-girl-in-apartment-building-stairwell/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=brooklyn-man-sentenced-to-18-years-in-prison-for-rape-of-12-year-old-girl-in-apartment-building-stairwell"
+    },
+    {
+      "n": 101,
+      "name": "22 alleged Folk Nation gang members (named defendants include Shamear Webster, Zakai Greene, Justice Cummins, Tukoy Gillespie, Jaron Dennis, Anthony Saunders, Elijah Franck, Markel Henry, Deremous Wilder, Gabriel Rhoden, Gabriel Modeste, Ronaldinho Mareus, Molefi Williams)",
+      "date": "2026-06-25",
+      "borough": "Brooklyn",
+      "summary": "Twenty-two alleged members of Folk Nation gang subsets were indicted on charges including conspiracy to commit murder, second-degree murder, attempted murder, and criminal weapon possession for allegedly committing 26 shootings across Brooklyn and Manhattan from October 2022 to June 2026. The shootings resulted in one homicide, 12 non-fatal injuries, and 23 victims total, including three innocent bystanders struck by gunfire during gang violence and territorial disputes.",
+      "source_url": "https://www.brooklynda.org/2026/06/25/twenty-two-alleged-members-of-folk-nation-gang-charged-in-conspiracy-indictment-that-includes-26-shootings/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=twenty-two-alleged-members-of-folk-nation-gang-charged-in-conspiracy-indictment-that-includes-26-shootings"
+    },
+    {
+      "n": 102,
+      "name": "Harvey Weinstein",
+      "date": "2026-06-25",
+      "borough": "Manhattan",
+      "summary": "Harvey Weinstein was convicted of class B felony rape for violently sexually assaulting Miriam Haley. The Manhattan District Attorney announced it would not retry a remaining rape count at the request of another survivor, Jessica Mann, while recommending a 20-year prison sentence for the conviction.",
+      "source_url": "https://manhattanda.org/statement-from-manhattan-d-a-alvin-bragg-on-people-v-weinstein/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=statement-from-manhattan-d-a-alvin-bragg-on-people-v-weinstein"
     }
   ],
-  "last_scan_date": "2026-06-22"
+  "last_scan_date": "2026-06-29"
 }
