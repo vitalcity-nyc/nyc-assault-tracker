@@ -1,6 +1,6 @@
 {
   "year": 2026,
-  "last_updated": "2026-06-29",
+  "last_updated": "2026-07-06",
   "note": "Compiled from NYC District Attorney press releases (Manhattan, Brooklyn, Bronx, Queens, Staten Island), federal prosecutor announcements, and reporting in NY Post, Daily News, NY Times, Gothamist, ABC7, NBC4, CBS2, Patch, and amNY. Entries are de-duplicated where a single defendant appears in multiple reports; the same defendant may appear on multiple dates when separate events (arrest, indictment, conviction) are reported. A small number of entries point to a DA press-release index rather than a case-specific permalink because the DA website's indexed permalinks could not be confirmed at compile time; readers can verify via the DA's dated press-release archive.",
   "cases": [
     {
@@ -725,6 +725,14 @@
     },
     {
       "n": 91,
+      "name": "Hector Deleon",
+      "date": "2026-06-07",
+      "borough": "Manhattan",
+      "summary": "Hector Deleon, 51, was indicted for an unprovoked stabbing spree in Penn Station on June 7, 2026, in which he attacked seven individuals with a fixed blade knife, stabbing victims in the throat, chest, neck, temple, and face. Deleon is charged with seven counts of attempted murder in the second degree, one count of assault in the first degree, six counts of attempted assault in the first degree, and four counts of assault in the second degree.",
+      "source_url": "https://manhattanda.org/d-a-bragg-announces-18-count-indictment-of-hector-deleon-for-stabbing-spree-in-penn-station/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=d-a-bragg-announces-18-count-indictment-of-hector-deleon-for-stabbing-spree-in-penn-station"
+    },
+    {
+      "n": 92,
       "name": "Harvey Marcelin",
       "date": "2026-06-10",
       "borough": "Brooklyn",
@@ -732,7 +740,7 @@
       "source_url": "https://www.brooklynda.org/2026/06/10/elder-parolee-sentenced-to-life-in-prison-for-murdering-and-dismembering-brooklyn-woman/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=elder-parolee-sentenced-to-life-in-prison-for-murdering-and-dismembering-brooklyn-woman"
     },
     {
-      "n": 92,
+      "n": 93,
       "name": "Michael Robinson",
       "date": "2026-06-10",
       "borough": "Queens",
@@ -740,7 +748,7 @@
       "source_url": "https://queensda.org/queens-man-convicted-for-a-second-time-in-1993-murder-of-pregnant-estranged-wife/"
     },
     {
-      "n": 93,
+      "n": 94,
       "name": "15-year-old defendant (name withheld)",
       "date": "2026-06-11",
       "borough": "Queens",
@@ -748,7 +756,7 @@
       "source_url": "https://queensda.org/teenager-charged-with-attempted-murder-for-shooting-at-nypd-officers-in-unmarked-police-car/"
     },
     {
-      "n": 94,
+      "n": 95,
       "name": "Jonathan Baez",
       "date": "2026-06-11",
       "borough": "Bronx",
@@ -756,7 +764,7 @@
       "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/55-2026-NYPD-Officer-Jonathan-Baez-indicted-for-attempted-murder.pdf"
     },
     {
-      "n": 95,
+      "n": 96,
       "name": "William Freeman",
       "date": "2026-06-11",
       "borough": "Brooklyn",
@@ -764,7 +772,7 @@
       "source_url": "https://www.brooklynda.org/2026/06/11/brooklyn-man-sentenced-to-18-years-in-prison-for-shooting-death-of-ethan-williams/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=brooklyn-man-sentenced-to-18-years-in-prison-for-shooting-death-of-ethan-williams"
     },
     {
-      "n": 96,
+      "n": 97,
       "name": "Edwin Rios",
       "date": "2026-06-16",
       "borough": "Bronx",
@@ -772,7 +780,7 @@
       "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/57-2026-Edwin-Rios-Sentenced-for-Attempted-Murder.pdf"
     },
     {
-      "n": 97,
+      "n": 98,
       "name": "Shaheene Ahmad",
       "date": "2026-06-16",
       "borough": "Bronx",
@@ -780,7 +788,7 @@
       "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/59-2026-shaheene-ahmad-sentenced-for-murder.pdf"
     },
     {
-      "n": 98,
+      "n": 99,
       "name": "Robert White, Sunshyne Davis",
       "date": "2026-06-17",
       "borough": "Brooklyn",
@@ -788,7 +796,7 @@
       "source_url": "https://www.brooklynda.org/2026/06/17/brooklyn-mother-and-boyfriend-indicted-for-murder-of-three-year-old-boy-who-was-beaten-and-starved/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=brooklyn-mother-and-boyfriend-indicted-for-murder-of-three-year-old-boy-who-was-beaten-and-starved"
     },
     {
-      "n": 99,
+      "n": 100,
       "name": "Kareem Reid",
       "date": "2026-06-18",
       "borough": "Bronx",
@@ -796,7 +804,7 @@
       "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/61-2026-Kareem-Reid-sentenced-for-Manslaughter.pdf"
     },
     {
-      "n": 100,
+      "n": 101,
       "name": "Eric McMichael",
       "date": "2026-06-24",
       "borough": "Brooklyn",
@@ -804,7 +812,7 @@
       "source_url": "https://www.brooklynda.org/2026/06/24/brooklyn-man-sentenced-to-18-years-in-prison-for-rape-of-12-year-old-girl-in-apartment-building-stairwell/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=brooklyn-man-sentenced-to-18-years-in-prison-for-rape-of-12-year-old-girl-in-apartment-building-stairwell"
     },
     {
-      "n": 101,
+      "n": 102,
       "name": "22 alleged Folk Nation gang members (named defendants include Shamear Webster, Zakai Greene, Justice Cummins, Tukoy Gillespie, Jaron Dennis, Anthony Saunders, Elijah Franck, Markel Henry, Deremous Wilder, Gabriel Rhoden, Gabriel Modeste, Ronaldinho Mareus, Molefi Williams)",
       "date": "2026-06-25",
       "borough": "Brooklyn",
@@ -812,13 +820,37 @@
       "source_url": "https://www.brooklynda.org/2026/06/25/twenty-two-alleged-members-of-folk-nation-gang-charged-in-conspiracy-indictment-that-includes-26-shootings/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=twenty-two-alleged-members-of-folk-nation-gang-charged-in-conspiracy-indictment-that-includes-26-shootings"
     },
     {
-      "n": 102,
+      "n": 103,
       "name": "Harvey Weinstein",
       "date": "2026-06-25",
       "borough": "Manhattan",
       "summary": "Harvey Weinstein was convicted of class B felony rape for violently sexually assaulting Miriam Haley. The Manhattan District Attorney announced it would not retry a remaining rape count at the request of another survivor, Jessica Mann, while recommending a 20-year prison sentence for the conviction.",
       "source_url": "https://manhattanda.org/statement-from-manhattan-d-a-alvin-bragg-on-people-v-weinstein/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=statement-from-manhattan-d-a-alvin-bragg-on-people-v-weinstein"
+    },
+    {
+      "n": 104,
+      "name": "Tyreik Seth (AKA Tubby), 28, and 18 co-defendants, including seven juveniles under 17 at time of crimes",
+      "date": "2026-06-29",
+      "borough": "Bronx",
+      "summary": "Nineteen alleged gang members—seven of them juveniles—were indicted for Conspiracy to Commit Murder and various counts including Attempted Murder and Assault in connection with 13 shootings in the Morrisania neighborhood from May 2025 to April 2026. Four bystanders were wounded, including one critically, during gang violence as members of McKillville and three rival gangs fought over turf.",
+      "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/62-McKillville-DTH-FOE-gang-shootings.pdf"
+    },
+    {
+      "n": 105,
+      "name": "22 gang members (Blitz Gang 4), including Rayvon Philip, Jamie Green, Nykim Henderson, Anthony Hardnett, Taj Williams, Jehovahni Alexandre, Noah Thomas, Jovan Whyte, Donnell Tucker",
+      "date": "2026-06-30",
+      "borough": "Queens",
+      "summary": "Twenty-two alleged members of the Blitz Gang 4 gang were indicted in a 97-count case for 11 shootings and one stabbing in southeast Queens dating to 2023, with charges including attempted murder, gang assault, and conspiracy. The violence left three people wounded, including one man who is now paralyzed. The defendants are accused of shooting at rivals, firing into homes, and engaging in gang altercations across South Jamaica, Rosedale, Hollis, and Cambria Heights.",
+      "source_url": "https://queensda.org/22-reputed-gang-members-indicted-for-11-shootings-in-southeast-queens/"
+    },
+    {
+      "n": 106,
+      "name": "Taquan Collins, 21; 17-year-old defendant (name withheld); 17-year-old defendant (name withheld); 16-year-old defendant (name withheld); Nelson Ojogbon, 18",
+      "date": "2026-06-30",
+      "borough": "Queens",
+      "summary": "Five reputed gang members were indicted for a shooting spree in the Rockaways in March and April 2026 that wounded two people. The defendants, allegedly members of the Ocean Village Jets and 70G Apes gangs, fired shots in multiple incidents including a robbery and shooting at a housing complex that left one victim requiring surgery for a deflated lung.",
+      "source_url": "https://queensda.org/five-reputed-gang-members-indicted-for-spate-of-gun-violence-in-the-rockaways/"
     }
   ],
-  "last_scan_date": "2026-06-29"
+  "last_scan_date": "2026-07-06"
 }
