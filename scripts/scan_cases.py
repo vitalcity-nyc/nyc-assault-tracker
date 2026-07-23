@@ -389,10 +389,30 @@ def main() -> int:
     print(f"Scanning releases posted on or after {cutoff.isoformat()}")
 
     all_releases: list[Release] = []
+    empty_scrapers: list[str] = []
     for scraper in SCRAPERS:
         rels = scraper()
         print(f"  {scraper.__name__}: {len(rels)} links")
+        if not rels:
+            empty_scrapers.append(scraper.__name__)
         all_releases.extend(rels)
+
+    # Every DA failure path in this file ends in an empty list — a dead feed, a
+    # site redesign that breaks the selectors, a network outage. Combined with
+    # the "no new cases" early return below, that made a total scrape failure
+    # indistinguishable from a quiet week, on a green run, indefinitely.
+    if not all_releases:
+        print(
+            f"No press-release links found at any of the {len(SCRAPERS)} DA "
+            f"offices. That is a broken scrape, not a quiet week — the cases "
+            f"file is left untouched.",
+            file=sys.stderr,
+        )
+        return 1
+    if empty_scrapers:
+        # One office going quiet is plausible; say so rather than swallowing it.
+        print(f"WARNING: no links from {', '.join(empty_scrapers)} — "
+              f"check whether those feeds moved.", file=sys.stderr)
 
     # Filter to this year, past cutoff, and not already in our file
     candidates: list[Release] = []
