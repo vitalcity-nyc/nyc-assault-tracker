@@ -1,6 +1,6 @@
 {
   "year": 2026,
-  "last_updated": "2026-07-20",
+  "last_updated": "2026-08-03",
   "note": "Compiled from NYC District Attorney press releases (Manhattan, Brooklyn, Bronx, Queens, Staten Island), federal prosecutor announcements, and reporting in NY Post, Daily News, NY Times, Gothamist, ABC7, NBC4, CBS2, Patch, and amNY. Entries are de-duplicated where a single defendant appears in multiple reports; the same defendant may appear on multiple dates when separate events (arrest, indictment, conviction) are reported. A small number of entries point to a DA press-release index rather than a case-specific permalink because the DA website's indexed permalinks could not be confirmed at compile time; readers can verify via the DA's dated press-release archive.",
   "cases": [
     {
@@ -341,6 +341,14 @@
     },
     {
       "n": 43,
+      "name": "Luis Belis",
+      "date": "2026-03-13",
+      "borough": "Queens",
+      "summary": "Luis Belis, a Georgia man, was indicted for fatally shooting 37-year-old Jairo Vinces-Cobena on a Corona street in March 2026 as part of a murder-for-hire scheme. Belis allegedly contracted to kill the victim for $20,000 and tracked him down during multiple trips to New York City before firing multiple gunshots at him. He was apprehended in Georgia days later and extradited to face charges including first-degree murder and weapon possession.",
+      "source_url": "https://queensda.org/georgia-man-indicted-for-murder-for-hire-plot-against-corona-resident/"
+    },
+    {
+      "n": 44,
       "name": "Messiah Randall, Jomar Pointdujour, Nicolson Pierrimas and Zaire Rolley",
       "date": "2026-03-13",
       "borough": "Queens",
@@ -348,7 +356,7 @@
       "source_url": "https://queensda.org/four-reputed-gang-members-indicted-on-murder-and-conspiracy-charges-for-shooting-death-of-16-year-old-innocent-bystander/"
     },
     {
-      "n": 44,
+      "n": 45,
       "name": "Nassadir Tate",
       "date": "2026-03-15",
       "borough": "Manhattan",
@@ -356,7 +364,7 @@
       "source_url": "https://manhattanda.org/category/news/press-release/"
     },
     {
-      "n": 45,
+      "n": 46,
       "name": "Luis Emmanuel Valencia Ponce",
       "date": "2026-03-16",
       "borough": "Queens",
@@ -364,7 +372,7 @@
       "source_url": "https://queensda.org/19-year-old-indicted-on-attempted-murder-charges-for-unprovoked-stabbing-of-29-year-old-mother-of-three-in-east-elmhurst/"
     },
     {
-      "n": 46,
+      "n": 47,
       "name": "Roman Amatitla",
       "date": "2026-03-16",
       "borough": "Queens",
@@ -372,7 +380,7 @@
       "source_url": "https://queensda.org/maspeth-man-indicted-on-upgraded-charges-of-first-degree-murder-for-setting-fire-at-flushing-building-that-killed-four-and-injured-others-including-two-fdny-members/"
     },
     {
-      "n": 47,
+      "n": 48,
       "name": "Christopher Nastasa",
       "date": "2026-03-17",
       "borough": "Brooklyn",
@@ -380,7 +388,7 @@
       "source_url": "https://www.brooklynda.org/2026/04/22/staten-island-man-indicted-for-hate-crime-assault-and-robbery-targeting-muslim-victim-on-subway/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=staten-island-man-indicted-for-hate-crime-assault-and-robbery-targeting-muslim-victim-on-subway"
     },
     {
-      "n": 48,
+      "n": 49,
       "name": "Defendant (Bed-Stuy anonymous jury case)",
       "date": "2026-03-17",
       "borough": "Brooklyn",
@@ -388,7 +396,7 @@
       "source_url": "https://www.brooklynda.org/2026/03/17/brooklyn-man-sentenced-to-25-years-to-life-in-prison-for-fatal-daylight-shooting-following-conviction-by-states-first-anonymous-jury/"
     },
     {
-      "n": 49,
+      "n": 50,
       "name": "Defendant (Cypress Hills park gunman)",
       "date": "2026-03-20",
       "borough": "Brooklyn",
@@ -396,7 +404,7 @@
       "source_url": "https://www.brooklynda.org/2026/03/20/gunman-who-fired-10-shots-into-brooklyn-park-killing-two-teens-and-injuring-a-third-sentenced-to-32-years-to-life-in-prison/"
     },
     {
-      "n": 50,
+      "n": 51,
       "name": "Luis Emmanuel Valencia Ponce",
       "date": "2026-03-20",
       "borough": "Queens",
@@ -404,7 +412,7 @@
       "source_url": "https://queensda.org/18-year-old-charged-with-attempted-murder-for-unprovoked-stabbing-of-30-year-old-mother-of-three-in-east-elmhurst/"
     },
     {
-      "n": 51,
+      "n": 52,
       "name": "Megan Horne",
       "date": "2026-03-25",
       "borough": "Brooklyn",
@@ -412,7 +420,7 @@
       "source_url": "https://www.brooklynda.org/2026/03/25/staten-island-woman-indicted-for-string-of-hate-crime-assaults-targeting-muslim-victims-in-bay-ridge/"
     },
     {
-      "n": 52,
+      "n": 53,
       "name": "Williejoe Delgado",
       "date": "2026-03-25",
       "borough": "Bronx",
@@ -420,7 +428,7 @@
       "source_url": "https://www.norwoodnews.org/bronx-man-charged-with-attempted-murder-for-allegedly-running-over-6-people-in-hit-run/"
     },
     {
-      "n": 53,
+      "n": 54,
       "name": "Joseph Martinez (AKA Jupiter Joe)",
       "date": "2026-03-26",
       "borough": "Bronx",
@@ -428,7 +436,7 @@
       "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/28-2026 Joseph-Martinez-aka-Jupiter-Joe-sentenced-1999-murder.pdf"
     },
     {
-      "n": 54,
+      "n": 55,
       "name": "Nelson Torres",
       "date": "2026-03-26",
       "borough": "Queens",
@@ -436,7 +444,7 @@
       "source_url": "https://queensda.org/corona-man-indicted-for-first-degree-murder-for-fatal-stabbing-of-bicyclist/"
     },
     {
-      "n": 55,
+      "n": 56,
       "name": "Jermaine Longmire",
       "date": "2026-03-27",
       "borough": "Manhattan",
@@ -444,7 +452,7 @@
       "source_url": "https://manhattanda.org/d-a-bragg-announces-all-count-trial-conviction-in-central-park-attempted-rape/"
     },
     {
-      "n": 56,
+      "n": 57,
       "name": "Slattery gang members (six defendants)",
       "date": "2026-03-27",
       "borough": "Bronx",
@@ -452,7 +460,7 @@
       "source_url": "https://www.bronxda.nyc.gov/html/newsroom/press-releases.shtml"
     },
     {
-      "n": 57,
+      "n": 58,
       "name": "Three youths (Christopher Redding murder)",
       "date": "2026-03-27",
       "borough": "Bronx",
@@ -460,7 +468,7 @@
       "source_url": "https://www.bronxda.nyc.gov/html/newsroom/press-releases.shtml"
     },
     {
-      "n": 58,
+      "n": 59,
       "name": "Willie Joe Delgado",
       "date": "2026-03-27",
       "borough": "Bronx",
@@ -468,7 +476,7 @@
       "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/29-2026-Willie-Delgado-indictment-hit-and-run.pdf"
     },
     {
-      "n": 59,
+      "n": 60,
       "name": "Dulce Dayana Hernandez Jimenez",
       "date": "2026-03-28",
       "borough": "Bronx",
@@ -476,7 +484,7 @@
       "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/42-2026-Dulce-Dayana-Hernandez-Jimenez-indicted-for-murder.pdf"
     },
     {
-      "n": 60,
+      "n": 61,
       "name": "Shaqueal Parker",
       "date": "2026-03-30",
       "borough": "Manhattan",
@@ -484,7 +492,7 @@
       "source_url": "https://manhattanda.org/d-a-bragg-announces-indictment-of-man-in-shooting-of-security-guard-in-midtown/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=d-a-bragg-announces-indictment-of-man-in-shooting-of-security-guard-in-midtown"
     },
     {
-      "n": 61,
+      "n": 62,
       "name": "Amuri Greene, Mathew Rodriguez",
       "date": "2026-04-01",
       "borough": "Brooklyn",
@@ -492,7 +500,7 @@
       "source_url": "https://www.brooklynda.org/2026/04/15/brooklyn-man-arraigned-on-murder-and-other-charges-for-shooting-that-killed-infant-wounded-toddler-brother-2/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=brooklyn-man-arraigned-on-murder-and-other-charges-for-shooting-that-killed-infant-wounded-toddler-brother-2"
     },
     {
-      "n": 62,
+      "n": 63,
       "name": "Mathew Rodriguez, Amuri Greene",
       "date": "2026-04-01",
       "borough": "Brooklyn",
@@ -500,7 +508,7 @@
       "source_url": "https://www.brooklynda.org/2026/04/14/brooklyn-man-arraigned-on-murder-and-other-charges-for-shooting-that-killed-infant-wounded-toddler-brother/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=brooklyn-man-arraigned-on-murder-and-other-charges-for-shooting-that-killed-infant-wounded-toddler-brother"
     },
     {
-      "n": 63,
+      "n": 64,
       "name": "Up the Hill defendants (seven gang members)",
       "date": "2026-04-02",
       "borough": "Manhattan",
@@ -508,7 +516,7 @@
       "source_url": "https://manhattanda.org/d-a-bragg-commiss-tisch-up-the-hill-defendants-indicted-for-murder-and-firearm-conspiracies-including-seven-shootings/"
     },
     {
-      "n": 64,
+      "n": 65,
       "name": "Carlos Santiago",
       "date": "2026-04-06",
       "borough": "Manhattan",
@@ -516,7 +524,7 @@
       "source_url": "https://manhattanda.org/d-a-bragg-announces-indictment-of-man-for-menacing-police-officer-with-a-knife/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=d-a-bragg-announces-indictment-of-man-for-menacing-police-officer-with-a-knife"
     },
     {
-      "n": 65,
+      "n": 66,
       "name": "Jose Bencosme",
       "date": "2026-04-09",
       "borough": "Bronx",
@@ -524,7 +532,7 @@
       "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/51-2026-Jose-Bencosme-Indicted-For-Assaulting-EMS-workers.pdf"
     },
     {
-      "n": 66,
+      "n": 67,
       "name": "Alexander Williams and Wydeem Rudd",
       "date": "2026-04-13",
       "borough": "Brooklyn",
@@ -532,7 +540,7 @@
       "source_url": "https://brooklynda.org/2026/04/13/two-men-sentenced-to-45-years-to-life-in-prison/"
     },
     {
-      "n": 67,
+      "n": 68,
       "name": "Shaniqua Fort",
       "date": "2026-04-13",
       "borough": "Queens",
@@ -540,7 +548,7 @@
       "source_url": "https://queensda.org/woman-charged-with-arson-and-assault-for-setting-fire-at-three-locations-in-maspeth-throwing-a-brick-through-a-storefront-window-and-injuring-two/"
     },
     {
-      "n": 68,
+      "n": 69,
       "name": "Mathew Rodriguez",
       "date": "2026-04-14",
       "borough": "Brooklyn",
@@ -548,7 +556,7 @@
       "source_url": "https://brooklynda.org/2026/04/14/brooklyn-man-arraigned-on-murder-and-other-charges-for-shooting-that-killed-infant-wounded-toddler-brother/"
     },
     {
-      "n": 69,
+      "n": 70,
       "name": "36 alleged members of WOOO and CHOO gangs (Jaden Grant, Bryan Ramos, Deshawn Nimmons, Jeffrey Thomas, Marvellous Ehigiator, Nasir Wade, Tristan McFarlane and others)",
       "date": "2026-04-15",
       "borough": "Brooklyn",
@@ -556,7 +564,7 @@
       "source_url": "https://www.brooklynda.org/2026/04/15/thirty-six-alleged-members-of-two-rival-brownsville-based-gangs-charged-in-two-indictments/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=thirty-six-alleged-members-of-two-rival-brownsville-based-gangs-charged-in-two-indictments"
     },
     {
-      "n": 70,
+      "n": 71,
       "name": "Thirty-six alleged Wooo and Choo gang members",
       "date": "2026-04-15",
       "borough": "Brooklyn",
@@ -564,7 +572,7 @@
       "source_url": "https://www.brooklynda.org/2026/04/15/thirty-six-alleged-members-of-two-rival-brownsville-based-gangs-charged-in-two-indictments/"
     },
     {
-      "n": 71,
+      "n": 72,
       "name": "Andres Portilla",
       "date": "2026-04-16",
       "borough": "Queens",
@@ -572,7 +580,7 @@
       "source_url": "https://queensda.org/jackson-heights-man-sentenced-to-40-years-in-prison-for-the-kidnapping-and-rape-of-multiple-victims/"
     },
     {
-      "n": 72,
+      "n": 73,
       "name": "Angel Farias",
       "date": "2026-04-16",
       "borough": "Queens",
@@ -580,7 +588,7 @@
       "source_url": "https://queensda.org/queens-man-charged-with-sexually-abusing-6-year-old-in-jamaica-department-store/"
     },
     {
-      "n": 73,
+      "n": 74,
       "name": "Zahir Davis",
       "date": "2026-04-16",
       "borough": "Queens",
@@ -588,7 +596,7 @@
       "source_url": "https://queensda.org/teenager-charged-with-murder-for-shooting-death-of-15-year-old-jaden-pierre-in-roy-wilkins-park/"
     },
     {
-      "n": 74,
+      "n": 75,
       "name": "Zahir Davis",
       "date": "2026-04-16",
       "borough": "Queens",
@@ -596,7 +604,7 @@
       "source_url": "https://queensda.org/teenager-arraigned-on-indictment-for-murder-of-15-year-old-jaden-pierre-in-roy-wilkins-park/"
     },
     {
-      "n": 75,
+      "n": 76,
       "name": "Zahir Davis, 16-year-old defendant (name withheld)",
       "date": "2026-04-16",
       "borough": "Queens",
@@ -604,7 +612,7 @@
       "source_url": "https://queensda.org/teenager-indicted-for-murder-of-15-year-jaden-pierre-in-roy-wilkins-park/"
     },
     {
-      "n": 76,
+      "n": 77,
       "name": "Eliud Garcia",
       "date": "2026-04-23",
       "borough": "Manhattan",
@@ -612,7 +620,7 @@
       "source_url": "https://manhattanda.org/d-a-bragg-man-indicted-for-murdering-his-wife-in-harlem/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=d-a-bragg-man-indicted-for-murdering-his-wife-in-harlem"
     },
     {
-      "n": 77,
+      "n": 78,
       "name": "Kevin Gavin",
       "date": "2026-04-24",
       "borough": "Brooklyn",
@@ -620,7 +628,7 @@
       "source_url": "https://www.brooklynda.org/2026/04/24/brooklyn-man-who-preyed-on-elderly-neighbors-as-serial-killer-pleads-guilty-to-three-murders/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=brooklyn-man-who-preyed-on-elderly-neighbors-as-serial-killer-pleads-guilty-to-three-murders"
     },
     {
-      "n": 78,
+      "n": 79,
       "name": "Dauri Batita",
       "date": "2026-04-26",
       "borough": "Queens",
@@ -628,7 +636,7 @@
       "source_url": "https://queensda.org/delivery-driver-charged-with-attempted-robbery-for-attacking-carload-of-women-in-woodhaven-assaulting-motorists-and-bystander/"
     },
     {
-      "n": 79,
+      "n": 80,
       "name": "Matthew Rodriguez",
       "date": "2026-04-27",
       "borough": "Manhattan",
@@ -636,7 +644,7 @@
       "source_url": "https://queensda.org/long-island-teen-extradited-from-virginia-to-face-attempted-murder-charges-for-shooting-15-year-old-boy-inside-a-train-in-april/"
     },
     {
-      "n": 80,
+      "n": 81,
       "name": "Charles Murray",
       "date": "2026-04-30",
       "borough": "Bronx",
@@ -644,7 +652,7 @@
       "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/40-2026-charles-murray-sentenced-in-attempted-murder .pdf"
     },
     {
-      "n": 81,
+      "n": 82,
       "name": "Kamal Semrade",
       "date": "2026-05-06",
       "borough": "Manhattan",
@@ -652,7 +660,7 @@
       "source_url": "https://manhattanda.org/d-a-bragg-announces-prison-sentence-of-kamal-semrade-for-subway-shoving-on-the-upper-east-side/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=d-a-bragg-announces-prison-sentence-of-kamal-semrade-for-subway-shoving-on-the-upper-east-side"
     },
     {
-      "n": 82,
+      "n": 83,
       "name": "Harvey Marcelin",
       "date": "2026-05-07",
       "borough": "Brooklyn",
@@ -660,7 +668,7 @@
       "source_url": "https://www.brooklynda.org/2026/05/08/elder-parolee-convicted-of-murdering-and-dismembering-brooklyn-woman-then-discarding-her-remains/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=elder-parolee-convicted-of-murdering-and-dismembering-brooklyn-woman-then-discarding-her-remains"
     },
     {
-      "n": 83,
+      "n": 84,
       "name": "Rhamell Burke",
       "date": "2026-05-07",
       "borough": "Manhattan",
@@ -668,7 +676,7 @@
       "source_url": "https://manhattanda.org/d-a-bragg-announces-murder-indictment-of-rhamell-burke-for-fatally-shoving-76-year-old-down-subway-stairs/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=d-a-bragg-announces-murder-indictment-of-rhamell-burke-for-fatally-shoving-76-year-old-down-subway-stairs"
     },
     {
-      "n": 84,
+      "n": 85,
       "name": "Carlos Rivera",
       "date": "2026-05-11",
       "borough": "Bronx",
@@ -676,7 +684,7 @@
       "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/41-2026-Carlos-Rivera-sentenced-attempted-murder.pdf"
     },
     {
-      "n": 85,
+      "n": 86,
       "name": "Tyquan Holmes, Kristian Blackstock, Christopher Smart, Isef Richards, Christopher Moore, and 10 others",
       "date": "2026-05-11",
       "borough": "Brooklyn",
@@ -684,7 +692,7 @@
       "source_url": "https://www.brooklynda.org/2026/05/11/fifteen-alleged-members-of-coney-island-based-gangs-charged-with-numerous-shootings-across-brooklyn/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=fifteen-alleged-members-of-coney-island-based-gangs-charged-with-numerous-shootings-across-brooklyn"
     },
     {
-      "n": 86,
+      "n": 87,
       "name": "Jermaine Longmire",
       "date": "2026-05-13",
       "borough": "Manhattan",
@@ -692,7 +700,7 @@
       "source_url": "https://manhattanda.org/d-a-bragg-announces-sentencing-in-central-park-attempted-rape/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=d-a-bragg-announces-sentencing-in-central-park-attempted-rape"
     },
     {
-      "n": 87,
+      "n": 88,
       "name": "Elvin Suarez",
       "date": "2026-05-15",
       "borough": "Manhattan",
@@ -700,7 +708,7 @@
       "source_url": "https://manhattanda.org/d-a-bragg-man-indicted-for-upper-west-side-car-crash-that-killed-two-and-injured-three/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=d-a-bragg-man-indicted-for-upper-west-side-car-crash-that-killed-two-and-injured-three"
     },
     {
-      "n": 88,
+      "n": 89,
       "name": "Harvey Weinstein",
       "date": "2026-05-15",
       "borough": "Manhattan",
@@ -708,7 +716,7 @@
       "source_url": "https://manhattanda.org/statement-from-d-a-bragg-on-the-harvey-weinstein-mistrial/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=statement-from-d-a-bragg-on-the-harvey-weinstein-mistrial"
     },
     {
-      "n": 89,
+      "n": 90,
       "name": "Agustin Diaz",
       "date": "2026-05-19",
       "borough": "Manhattan",
@@ -716,7 +724,7 @@
       "source_url": "https://manhattanda.org/d-a-bragg-agustin-diaz-sentenced-to-15-years-in-prison-for-series-of-sexual-assaults/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=d-a-bragg-agustin-diaz-sentenced-to-15-years-in-prison-for-series-of-sexual-assaults"
     },
     {
-      "n": 90,
+      "n": 91,
       "name": "Jose Ramos",
       "date": "2026-05-19",
       "borough": "Bronx",
@@ -724,7 +732,7 @@
       "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/43-2026-jose-ramos-indicted-in-rape-of-12-year-old-girl.pdf"
     },
     {
-      "n": 91,
+      "n": 92,
       "name": "Erin Merdy",
       "date": "2026-05-20",
       "borough": "Brooklyn",
@@ -732,7 +740,7 @@
       "source_url": "https://www.brooklynda.org/2026/05/20/brooklyn-mother-sentenced-to-20-years-to-life-in-prison-for-killing-her-three-children/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=brooklyn-mother-sentenced-to-20-years-to-life-in-prison-for-killing-her-three-children"
     },
     {
-      "n": 92,
+      "n": 93,
       "name": "Kevin Gavin",
       "date": "2026-05-20",
       "borough": "Brooklyn",
@@ -740,7 +748,7 @@
       "source_url": "https://www.brooklynda.org/2026/05/20/brooklyn-serial-killer-sentenced-to-30-years-to-life-in-prison-for-murdering-three-elderly-brownsville-women/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=brooklyn-serial-killer-sentenced-to-30-years-to-life-in-prison-for-murdering-three-elderly-brownsville-women"
     },
     {
-      "n": 93,
+      "n": 94,
       "name": "Jason Sargeant",
       "date": "2026-05-21",
       "borough": "Manhattan",
@@ -748,7 +756,7 @@
       "source_url": "https://manhattanda.org/statement-from-d-a-bragg-on-the-sentencing-of-jason-sargeant/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=statement-from-d-a-bragg-on-the-sentencing-of-jason-sargeant"
     },
     {
-      "n": 94,
+      "n": 95,
       "name": "Dawood Faisal",
       "date": "2026-05-25",
       "borough": "Queens",
@@ -756,7 +764,7 @@
       "source_url": "https://queensda.org/speeding-driver-indicted-on-manslaughter-and-assault-charges-for-multi-car-collision-that-killed-woman-on-francis-lewis-boulevard/"
     },
     {
-      "n": 95,
+      "n": 96,
       "name": "Hector Deleon",
       "date": "2026-06-07",
       "borough": "Manhattan",
@@ -764,7 +772,7 @@
       "source_url": "https://manhattanda.org/d-a-bragg-announces-18-count-indictment-of-hector-deleon-for-stabbing-spree-in-penn-station/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=d-a-bragg-announces-18-count-indictment-of-hector-deleon-for-stabbing-spree-in-penn-station"
     },
     {
-      "n": 96,
+      "n": 97,
       "name": "Harvey Marcelin",
       "date": "2026-06-10",
       "borough": "Brooklyn",
@@ -772,7 +780,7 @@
       "source_url": "https://www.brooklynda.org/2026/06/10/elder-parolee-sentenced-to-life-in-prison-for-murdering-and-dismembering-brooklyn-woman/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=elder-parolee-sentenced-to-life-in-prison-for-murdering-and-dismembering-brooklyn-woman"
     },
     {
-      "n": 97,
+      "n": 98,
       "name": "Michael Robinson",
       "date": "2026-06-10",
       "borough": "Queens",
@@ -780,7 +788,7 @@
       "source_url": "https://queensda.org/queens-man-convicted-for-a-second-time-in-1993-murder-of-pregnant-estranged-wife/"
     },
     {
-      "n": 98,
+      "n": 99,
       "name": "15-year-old defendant (name withheld)",
       "date": "2026-06-11",
       "borough": "Queens",
@@ -788,7 +796,7 @@
       "source_url": "https://queensda.org/teenager-charged-with-attempted-murder-for-shooting-at-nypd-officers-in-unmarked-police-car/"
     },
     {
-      "n": 99,
+      "n": 100,
       "name": "Joel Bradley, Timothy Carlos, Eydam Fernandez, Jayden Golden, Jaeden Munoz",
       "date": "2026-06-11",
       "borough": "Manhattan",
@@ -796,7 +804,7 @@
       "source_url": "https://manhattanda.org/d-a-bragg-nypd-commissioner-tisch-six-indicted-for-spate-of-violence-following-game-4-of-the-nba-finals/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=d-a-bragg-nypd-commissioner-tisch-six-indicted-for-spate-of-violence-following-game-4-of-the-nba-finals"
     },
     {
-      "n": 100,
+      "n": 101,
       "name": "Jonathan Baez",
       "date": "2026-06-11",
       "borough": "Bronx",
@@ -804,7 +812,7 @@
       "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/55-2026-NYPD-Officer-Jonathan-Baez-indicted-for-attempted-murder.pdf"
     },
     {
-      "n": 101,
+      "n": 102,
       "name": "William Freeman",
       "date": "2026-06-11",
       "borough": "Brooklyn",
@@ -812,7 +820,7 @@
       "source_url": "https://www.brooklynda.org/2026/06/11/brooklyn-man-sentenced-to-18-years-in-prison-for-shooting-death-of-ethan-williams/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=brooklyn-man-sentenced-to-18-years-in-prison-for-shooting-death-of-ethan-williams"
     },
     {
-      "n": 102,
+      "n": 103,
       "name": "Edwin Rios",
       "date": "2026-06-16",
       "borough": "Bronx",
@@ -820,7 +828,7 @@
       "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/57-2026-Edwin-Rios-Sentenced-for-Attempted-Murder.pdf"
     },
     {
-      "n": 103,
+      "n": 104,
       "name": "Shaheene Ahmad",
       "date": "2026-06-16",
       "borough": "Bronx",
@@ -828,7 +836,7 @@
       "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/59-2026-shaheene-ahmad-sentenced-for-murder.pdf"
     },
     {
-      "n": 104,
+      "n": 105,
       "name": "Robert White, Sunshyne Davis",
       "date": "2026-06-17",
       "borough": "Brooklyn",
@@ -836,7 +844,7 @@
       "source_url": "https://www.brooklynda.org/2026/06/17/brooklyn-mother-and-boyfriend-indicted-for-murder-of-three-year-old-boy-who-was-beaten-and-starved/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=brooklyn-mother-and-boyfriend-indicted-for-murder-of-three-year-old-boy-who-was-beaten-and-starved"
     },
     {
-      "n": 105,
+      "n": 106,
       "name": "Kareem Reid",
       "date": "2026-06-18",
       "borough": "Bronx",
@@ -844,7 +852,7 @@
       "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/61-2026-Kareem-Reid-sentenced-for-Manslaughter.pdf"
     },
     {
-      "n": 106,
+      "n": 107,
       "name": "Eric McMichael",
       "date": "2026-06-24",
       "borough": "Brooklyn",
@@ -852,7 +860,7 @@
       "source_url": "https://www.brooklynda.org/2026/06/24/brooklyn-man-sentenced-to-18-years-in-prison-for-rape-of-12-year-old-girl-in-apartment-building-stairwell/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=brooklyn-man-sentenced-to-18-years-in-prison-for-rape-of-12-year-old-girl-in-apartment-building-stairwell"
     },
     {
-      "n": 107,
+      "n": 108,
       "name": "22 alleged Folk Nation gang members (named defendants include Shamear Webster, Zakai Greene, Justice Cummins, Tukoy Gillespie, Jaron Dennis, Anthony Saunders, Elijah Franck, Markel Henry, Deremous Wilder, Gabriel Rhoden, Gabriel Modeste, Ronaldinho Mareus, Molefi Williams)",
       "date": "2026-06-25",
       "borough": "Brooklyn",
@@ -860,7 +868,7 @@
       "source_url": "https://www.brooklynda.org/2026/06/25/twenty-two-alleged-members-of-folk-nation-gang-charged-in-conspiracy-indictment-that-includes-26-shootings/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=twenty-two-alleged-members-of-folk-nation-gang-charged-in-conspiracy-indictment-that-includes-26-shootings"
     },
     {
-      "n": 108,
+      "n": 109,
       "name": "Harvey Weinstein",
       "date": "2026-06-25",
       "borough": "Manhattan",
@@ -868,7 +876,7 @@
       "source_url": "https://manhattanda.org/statement-from-manhattan-d-a-alvin-bragg-on-people-v-weinstein/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=statement-from-manhattan-d-a-alvin-bragg-on-people-v-weinstein"
     },
     {
-      "n": 109,
+      "n": 110,
       "name": "Tyreik Seth (AKA Tubby), 28, and 18 co-defendants, including seven juveniles under 17 at time of crimes",
       "date": "2026-06-29",
       "borough": "Bronx",
@@ -876,7 +884,7 @@
       "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/62-McKillville-DTH-FOE-gang-shootings.pdf"
     },
     {
-      "n": 110,
+      "n": 111,
       "name": "22 gang members (Blitz Gang 4), including Rayvon Philip, Jamie Green, Nykim Henderson, Anthony Hardnett, Taj Williams, Jehovahni Alexandre, Noah Thomas, Jovan Whyte, Donnell Tucker",
       "date": "2026-06-30",
       "borough": "Queens",
@@ -884,7 +892,7 @@
       "source_url": "https://queensda.org/22-reputed-gang-members-indicted-for-11-shootings-in-southeast-queens/"
     },
     {
-      "n": 111,
+      "n": 112,
       "name": "Taquan Collins, 21; 17-year-old defendant (name withheld); 17-year-old defendant (name withheld); 16-year-old defendant (name withheld); Nelson Ojogbon, 18",
       "date": "2026-06-30",
       "borough": "Queens",
@@ -892,13 +900,37 @@
       "source_url": "https://queensda.org/five-reputed-gang-members-indicted-for-spate-of-gun-violence-in-the-rockaways/"
     },
     {
-      "n": 112,
+      "n": 113,
       "name": "Termaine Saulsbury",
       "date": "2026-06-30",
       "borough": "Bronx",
       "summary": "Termaine Saulsbury, 42, of Philadelphia, was sentenced to 17 years in prison for shooting a 59-year-old gas station attendant in the head on November 22, 2022, at a station on Boston Road in the Bronx. The victim underwent multiple surgeries and suffered life-altering injuries. Saulsbury pleaded guilty to attempted murder in the second degree.",
       "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/63-2026-Philadelphia-man-sentenced-for-attempted-murder.pdf"
+    },
+    {
+      "n": 114,
+      "name": "Donovan Murphy",
+      "date": "2026-07-28",
+      "borough": "Manhattan",
+      "summary": "Donovan Murphy was sentenced to 34 years in prison for breaking into a woman's Upper East Side apartment while she slept, sexually assaulting and raping her after repeatedly punching her in the face. Murphy entered the apartment at approximately 4:00 a.m., stole bank cards, and violently attacked the victim causing facial fractures and a deep laceration to her mouth.",
+      "source_url": "https://manhattanda.org/d-a-bragg-announces-prison-sentence-in-upper-east-side-apartment-rape/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=d-a-bragg-announces-prison-sentence-in-upper-east-side-apartment-rape"
+    },
+    {
+      "n": 115,
+      "name": "Shaleek Brunson",
+      "date": "2026-07-28",
+      "borough": "Queens",
+      "summary": "Shaleek Brunson, 42, chased a woman with a hammer on a Queens street, causing her to flee nearly a quarter mile to the Jewish Institute of Queens in Rego Park. On school grounds, he pushed an 8-year-old boy into a fence, causing a head laceration requiring six stitches, and bit a school employee. Brunson was charged with five counts of second-degree assault and other crimes.",
+      "source_url": "https://queensda.org/brooklyn-man-who-chased-woman-with-hammer-charged-with-assault/"
+    },
+    {
+      "n": 116,
+      "name": "Joseph Morros",
+      "date": "2026-07-29",
+      "borough": "Manhattan",
+      "summary": "Joseph Morros was convicted of murder in the December 2022 shooting death of 30-year-old Tykeem Berry at an Inwood bodega. Berry's young daughter witnessed the killing.",
+      "source_url": "https://manhattanda.org/statement-from-d-a-bragg-on-the-trial-conviction-of-joseph-morros/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=statement-from-d-a-bragg-on-the-trial-conviction-of-joseph-morros"
     }
   ],
-  "last_scan_date": "2026-07-20"
+  "last_scan_date": "2026-08-03"
 }
