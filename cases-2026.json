@@ -1,6 +1,6 @@
 {
   "year": 2026,
-  "last_updated": "2026-08-24",
+  "last_updated": "2026-08-31",
   "note": "Compiled from NYC District Attorney press releases (Manhattan, Brooklyn, Bronx, Queens, Staten Island), federal prosecutor announcements, and reporting in NY Post, Daily News, NY Times, Gothamist, ABC7, NBC4, CBS2, Patch, and amNY. Entries are de-duplicated where a single defendant appears in multiple reports; the same defendant may appear on multiple dates when separate events (arrest, indictment, conviction) are reported. A small number of entries point to a DA press-release index rather than a case-specific permalink because the DA website's indexed permalinks could not be confirmed at compile time; readers can verify via the DA's dated press-release archive.",
   "cases": [
     {
@@ -901,6 +901,14 @@
     },
     {
       "n": 113,
+      "name": "Jon Arce",
+      "date": "2026-06-23",
+      "borough": "Bronx",
+      "summary": "Jon Arce, 28, was indicted for assaulting his ex-girlfriend on two occasions, punching and kicking her on June 23, 2026. During the second attack, he slashed two men who intervened to help her.",
+      "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/76-2026-Jon-Arce-Indicted-Assault.pdf"
+    },
+    {
+      "n": 114,
       "name": "16-year-old defendant (name withheld)",
       "date": "2026-06-24",
       "borough": "Queens",
@@ -908,7 +916,7 @@
       "source_url": "https://queensda.org/teen-defendant-charged-in-multiple-chain-snatchings-targeting-female-pedestrians/"
     },
     {
-      "n": 114,
+      "n": 115,
       "name": "Eric McMichael",
       "date": "2026-06-24",
       "borough": "Brooklyn",
@@ -916,7 +924,7 @@
       "source_url": "https://www.brooklynda.org/2026/06/24/brooklyn-man-sentenced-to-18-years-in-prison-for-rape-of-12-year-old-girl-in-apartment-building-stairwell/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=brooklyn-man-sentenced-to-18-years-in-prison-for-rape-of-12-year-old-girl-in-apartment-building-stairwell"
     },
     {
-      "n": 115,
+      "n": 116,
       "name": "22 alleged Folk Nation gang members (named defendants include Shamear Webster, Zakai Greene, Justice Cummins, Tukoy Gillespie, Jaron Dennis, Anthony Saunders, Elijah Franck, Markel Henry, Deremous Wilder, Gabriel Rhoden, Gabriel Modeste, Ronaldinho Mareus, Molefi Williams)",
       "date": "2026-06-25",
       "borough": "Brooklyn",
@@ -924,7 +932,7 @@
       "source_url": "https://www.brooklynda.org/2026/06/25/twenty-two-alleged-members-of-folk-nation-gang-charged-in-conspiracy-indictment-that-includes-26-shootings/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=twenty-two-alleged-members-of-folk-nation-gang-charged-in-conspiracy-indictment-that-includes-26-shootings"
     },
     {
-      "n": 116,
+      "n": 117,
       "name": "Harvey Weinstein",
       "date": "2026-06-25",
       "borough": "Manhattan",
@@ -932,7 +940,7 @@
       "source_url": "https://manhattanda.org/statement-from-manhattan-d-a-alvin-bragg-on-people-v-weinstein/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=statement-from-manhattan-d-a-alvin-bragg-on-people-v-weinstein"
     },
     {
-      "n": 117,
+      "n": 118,
       "name": "Jennifer Lackard, James Lackard, Chase Lackard",
       "date": "2026-06-29",
       "borough": "Bronx",
@@ -940,7 +948,7 @@
       "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/70-2026-Lackard-Family-Indicted-for-Attempted-Murder.pdf"
     },
     {
-      "n": 118,
+      "n": 119,
       "name": "Tyreik Seth (AKA Tubby), 28, and 18 co-defendants, including seven juveniles under 17 at time of crimes",
       "date": "2026-06-29",
       "borough": "Bronx",
@@ -948,7 +956,7 @@
       "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/62-McKillville-DTH-FOE-gang-shootings.pdf"
     },
     {
-      "n": 119,
+      "n": 120,
       "name": "22 gang members (Blitz Gang 4), including Rayvon Philip, Jamie Green, Nykim Henderson, Anthony Hardnett, Taj Williams, Jehovahni Alexandre, Noah Thomas, Jovan Whyte, Donnell Tucker",
       "date": "2026-06-30",
       "borough": "Queens",
@@ -956,7 +964,7 @@
       "source_url": "https://queensda.org/22-reputed-gang-members-indicted-for-11-shootings-in-southeast-queens/"
     },
     {
-      "n": 120,
+      "n": 121,
       "name": "Taquan Collins, 21; 17-year-old defendant (name withheld); 17-year-old defendant (name withheld); 16-year-old defendant (name withheld); Nelson Ojogbon, 18",
       "date": "2026-06-30",
       "borough": "Queens",
@@ -964,7 +972,7 @@
       "source_url": "https://queensda.org/five-reputed-gang-members-indicted-for-spate-of-gun-violence-in-the-rockaways/"
     },
     {
-      "n": 121,
+      "n": 122,
       "name": "Termaine Saulsbury",
       "date": "2026-06-30",
       "borough": "Bronx",
@@ -972,7 +980,7 @@
       "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/63-2026-Philadelphia-man-sentenced-for-attempted-murder.pdf"
     },
     {
-      "n": 122,
+      "n": 123,
       "name": "Robert Smith, Kevin Blunt",
       "date": "2026-07-04",
       "borough": "Brooklyn",
@@ -980,7 +988,7 @@
       "source_url": "https://www.brooklynda.org/2026/08/12/two-brooklyn-men-indicted-for-attempted-murder-in-alleged-july-fourth-mass-shooting-that-wounded-8-including-4-children/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=two-brooklyn-men-indicted-for-attempted-murder-in-alleged-july-fourth-mass-shooting-that-wounded-8-including-4-children"
     },
     {
-      "n": 123,
+      "n": 124,
       "name": "Donovan Murphy",
       "date": "2026-07-28",
       "borough": "Manhattan",
@@ -988,7 +996,7 @@
       "source_url": "https://manhattanda.org/d-a-bragg-announces-prison-sentence-in-upper-east-side-apartment-rape/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=d-a-bragg-announces-prison-sentence-in-upper-east-side-apartment-rape"
     },
     {
-      "n": 124,
+      "n": 125,
       "name": "Shaleek Brunson",
       "date": "2026-07-28",
       "borough": "Queens",
@@ -996,7 +1004,7 @@
       "source_url": "https://queensda.org/brooklyn-man-who-chased-woman-with-hammer-charged-with-assault/"
     },
     {
-      "n": 125,
+      "n": 126,
       "name": "60-year-old man from Queens Village (name withheld)",
       "date": "2026-07-29",
       "borough": "Queens",
@@ -1004,7 +1012,7 @@
       "source_url": "https://queensda.org/queens-village-man-sentenced-to-25-years-in-prison-for-raping-daughter/"
     },
     {
-      "n": 126,
+      "n": 127,
       "name": "Joseph Morros",
       "date": "2026-07-29",
       "borough": "Manhattan",
@@ -1012,7 +1020,7 @@
       "source_url": "https://manhattanda.org/statement-from-d-a-bragg-on-the-trial-conviction-of-joseph-morros/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=statement-from-d-a-bragg-on-the-trial-conviction-of-joseph-morros"
     },
     {
-      "n": 127,
+      "n": 128,
       "name": "Bretford Brewer",
       "date": "2026-07-31",
       "borough": "Queens",
@@ -1020,7 +1028,7 @@
       "source_url": "https://queensda.org/brooklyn-man-charged-for-fatal-stabbing-in-long-island-city-apartment-building/"
     },
     {
-      "n": 128,
+      "n": 129,
       "name": "Pedro Mercado",
       "date": "2026-08-06",
       "borough": "Bronx",
@@ -1028,7 +1036,7 @@
       "source_url": "https://www.bronxda.nyc.gov/downloads/pdf/pr/2026/71-2026-Pedro-Mercado-sentenced-for-manslaughter.pdf"
     },
     {
-      "n": 129,
+      "n": 130,
       "name": "Curtis Brown",
       "date": "2026-08-11",
       "borough": "Manhattan",
@@ -1036,7 +1044,7 @@
       "source_url": "https://manhattanda.org/d-a-bragg-announces-trial-conviction-of-curtis-wise-brown-for-running-sex-trafficking-operation/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=d-a-bragg-announces-trial-conviction-of-curtis-wise-brown-for-running-sex-trafficking-operation"
     },
     {
-      "n": 130,
+      "n": 131,
       "name": "Michael Hosein",
       "date": "2026-08-13",
       "borough": "Brooklyn",
@@ -1044,5 +1052,5 @@
       "source_url": "https://www.brooklynda.org/2026/08/13/defendant-sentenced-to-19-years-to-life-in-prison-for-murder-of-girlfriend-in-bedford-stuyvesant-apartment/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=defendant-sentenced-to-19-years-to-life-in-prison-for-murder-of-girlfriend-in-bedford-stuyvesant-apartment"
     }
   ],
-  "last_scan_date": "2026-08-24"
+  "last_scan_date": "2026-08-31"
 }
